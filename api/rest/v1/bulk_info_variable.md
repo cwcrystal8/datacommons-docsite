@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Get info on a variable
-nav_order: 2
+nav_exclude: true
 parent: v1 REST
 grand_parent: API
 published: false
@@ -10,7 +10,7 @@ permalink: /api/rest/v1/bulk/info/variable
 
 
 
-## v1/bulk/info/variable
+## /v1/bulk/info/variable
 
 Get basic information about multiple variables.
 
@@ -31,13 +31,38 @@ This API returns basic information on multiple variables, given each of their DC
 
 ## Request
 
+<div class="api-tab">
+  <button id="get-button" class="api-tablink" onclick="openTab(event, 'GET-request')">GET Request</button>
+  <button id="post-button" class="api-tablink" onclick="openTab(event, 'POST-request')">POST Request</button>
+</div> 
 
-GET https://api.datacommons.org/v1/observations/point/{VARIABLE_DCID}/{ENTITY_DCID}
-{: #api-signature}
+```
+https://api.datacommons.org/v1/bulk/info/variable?entities={entity_dcid_1}&entities={entity_dcid_2}
+```
+{: #GET-request .api-tabcontent .api-signature .scroll}
 
-### Parameters
 
-#### Path Parameters
+```
+URL:
+https://api.datacommons.org/v1/bulk/info/variable
+
+JSON Data:
+{
+  "entities": [
+    "{entity_dcid_1}",
+    "{entity_dcid_2}",
+    ...
+  ]
+}
+```
+{: #POST-request .api-tabcontent .api-signature .scroll}
+
+
+<script src="/assets/js/syntax_highlighting.js"></script>
+<script src="/assets/js/api-doc-tabs.js"></script>
+
+
+### Path Parameters
 
 | Name                                                | Description                   |
 | --------------------------------------------------- | ----------------------------- |
@@ -45,7 +70,7 @@ GET https://api.datacommons.org/v1/observations/point/{VARIABLE_DCID}/{ENTITY_DC
 | ENTITY_DCID <br /> <required-tag>Required</required-tag> | DCID of entity that the variable describes. |
 {: .doc-table }
 
-#### Query Parameters
+### Query Parameters
 
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
@@ -54,7 +79,7 @@ GET https://api.datacommons.org/v1/observations/point/{VARIABLE_DCID}/{ENTITY_DC
 
 ## Response
 
-The response will look something like:
+The response looks like:
 
 ```json
 {
@@ -63,6 +88,7 @@ The response will look something like:
   "facet": {...},
 }
 ```
+{: .response-signature .scroll}
 
 ### Response fields
 
@@ -70,7 +96,7 @@ The response will look something like:
 | -------- | ------ | -------------------------- |
 | value    | type   | Value of the variable queried for the queried entity. |
 | date     | string | Datetime the value returned was measured. |
-| facet    | dict   | Metadata on the [facet]({{ site.baseurl }}/api/rest/v1/getting_started#facet) the data came from. Can include things like provenance, measurement method, and units. |
+| facet    | dict   | Metadata on the [facet](/api/rest/v1/getting_started#facet) the data came from. Can include things like provenance, measurement method, and units. |
 {: .doc-table}
 
 ## Examples
@@ -83,52 +109,154 @@ Request:
 {: .example-box-title}
 ```bash
 $ curl --request GET --url \ 
-‘https://api.datacommons.org/v1/observations/point/Count_Person/country/USA’
+‘https://api.datacommons.org/v1/bulk/info/variable?entities=Count_Farm&entities=Amount_Stock’
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}
 
 Response:
 {: .example-box-title}
 ```json
 {
-  "date": "2020",
-  "value": 331449281,
-  "facet": {
-      "importName": "USDecennialCensus_RedistrictingRelease",
-      "provenanceUrl": "https://www.census.gov/programs-surveys/decennial-census/about/rdo/summary-files.html",
-      "measurementMethod": "USDecennialCensus"
+  "data": [
+    {
+      "entity": "Count_Farm",
+      "info": {
+        "placeTypeSummary": {
+          "Country": {
+            "topPlaces": [{ "dcid": "country/USA", "name": "United States" }],
+            "placeCount": 1,
+            "minValue": 2042220,
+            "maxValue": 2042220
+          },
+          "State": {
+            "topPlaces": [
+              { "dcid": "geoId/06", "name": "California" },
+              { "dcid": "geoId/48", "name": "Texas" },
+              { "dcid": "geoId/12", "name": "Florida" }
+            ],
+            "placeCount": 50,
+            "minValue": 990,
+            "maxValue": 248416
+          },
+          "County": {
+            "topPlaces": [
+              { "dcid": "geoId/06037", "name": "Los Angeles County" },
+              { "dcid": "geoId/17031", "name": "Cook County" },
+              { "dcid": "geoId/48201", "name": "Harris County" }
+            ],
+            "placeCount": 3076,
+            "minValue": 2,
+            "maxValue": 5551
+          }
+        },
+        "provenanceSummary": {
+          "dc/m02b5p": {
+            "importName": "USDA_AgricultureCensus",
+            "releaseFrequency": "P5Y",
+            "seriesSummary": [
+              {
+                "seriesKey": { "observationPeriod": "P5Y" },
+                "earliestDate": "2017",
+                "latestDate": "2017",
+                "placeTypeSummary": {
+                  "Country": {
+                    "topPlaces": [
+                      { "dcid": "country/USA", "name": "United States" }
+                    ],
+                    "placeCount": 1,
+                    "minValue": 2042220,
+                    "maxValue": 2042220
+                  },
+                  "State": {
+                    "topPlaces": [
+                      { "dcid": "geoId/06", "name": "California" },
+                      { "dcid": "geoId/48", "name": "Texas" },
+                      { "dcid": "geoId/12", "name": "Florida" }
+                    ],
+                    "placeCount": 50,
+                    "minValue": 990,
+                    "maxValue": 248416
+                  },
+                  "County": {
+                    "topPlaces": [
+                      { "dcid": "geoId/06037", "name": "Los Angeles County" },
+                      { "dcid": "geoId/17031", "name": "Cook County" },
+                      { "dcid": "geoId/48201", "name": "Harris County" }
+                    ],
+                    "placeCount": 3076,
+                    "minValue": 2,
+                    "maxValue": 5551
+                  }
+                },
+                "minValue": 2,
+                "maxValue": 2042220,
+                "observationCount": 3127,
+                "timeSeriesCount": 3127
+              }
+            ],
+            "observationCount": 3127,
+            "timeSeriesCount": 3127
+          }
+        }
+      }
+    },
+    {
+      "entity": "Amount_Stock",
+      "info": {
+        "placeTypeSummary": {
+          "Place": {
+            "topPlaces": [{ "dcid": "Earth", "name": "Earth" }],
+            "placeCount": 1,
+            "minValue": 2318922620000,
+            "maxValue": 79233321687795.8
+          },
+          "Country": {
+            "topPlaces": [
+              { "dcid": "country/CHN", "name": "China" },
+              { "dcid": "country/IND", "name": "India" },
+              { "dcid": "country/USA", "name": "United States" }
+            ],
+            "placeCount": 99,
+            "maxValue": 32120702650000
+          }
+        },
+        "provenanceSummary": {
+          "dc/jccrh82": {
+            "importName": "WorldDevelopmentIndicators",
+            "seriesSummary": [
+              {
+                "seriesKey": { "observationPeriod": "P1Y", "unit": "USDollar" },
+                "earliestDate": "1975",
+                "latestDate": "2019",
+                "placeTypeSummary": {
+                  "Country": {
+                    "topPlaces": [
+                      { "dcid": "country/CHN", "name": "China" },
+                      { "dcid": "country/IND", "name": "India" },
+                      { "dcid": "country/USA", "name": "United States" }
+                    ],
+                    "placeCount": 99,
+                    "maxValue": 32120702650000
+                  },
+                  "Place": {
+                    "topPlaces": [{ "dcid": "Earth", "name": "Earth" }],
+                    "placeCount": 1,
+                    "minValue": 2318922620000,
+                    "maxValue": 79233321687795.8
+                  }
+                },
+                "maxValue": 79233321687795.8,
+                "observationCount": 2290,
+                "timeSeriesCount": 100
+              }
+            ],
+            "observationCount": 2290,
+            "timeSeriesCount": 100
+          }
+        }
+      }
     }
+  ]
 }
 ```
-{: .example-box-content}
-
-
-### Example 2: Get single value at a **specific date**, for given variable and entity
-
-Get the annual electricity generation (DCID: `Annual_Generation_Electricity`) of California (DCID: `geoId/06`) in 2018.
-
-Request:
-{: .example-box-title}
-```bash
-$ curl --request GET --url \ 
-‘https://api.datacommons.org/v1/observations/point/Annual_Generation_Electricity/geoId/06?date=2018’
-```
-{: .example-box-content}
-
-Response:
-{: .example-box-title}
-```json
-{
-  {
-    "date": "2018",
-    "value": 195465638180,
-    "facet": {
-      "importName": "EIA_Electricity",
-      "provenanceUrl": "https://www.eia.gov/opendata/qb.php?category=0",
-      "unit": "KilowattHour"
-    }
-  }
-}
-```
-{: .example-box-content}
-
+{: .example-box-content .scroll}

@@ -30,27 +30,25 @@ This API returns basic information on a variable, given the variable's DCID. The
  
  
 ## Request
+GET Request
+{: .api-header}
+```
+https://api.datacommons.org/v1/info/variable/{VARIABLE_DCID}
+```
+{: .api-signature .scroll}
+<script src="/assets/js/syntax_highlighting.js"></script>
+
  
- 
-GET https://api.datacommons.org/v1/observations/point/{VARIABLE_DCID}/{ENTITY_DCID}
-{: #api-signature}
- 
-### Parameters
- 
-#### Path Parameters
+### Path Parameters
  
 | Name                                                | Description                   |
 | --------------------------------------------------- | ----------------------------- |
 | VARIABLE_DCID <br /> <required-tag>Required</required-tag> | DCID of the variable to query a value for. |
-| ENTITY_DCID <br /> <required-tag>Required</required-tag> | DCID of the entity that the variable describes. |
-{: .doc-table }
+{: .doc-table}
  
-#### Query Parameters
+### Query Parameters
  
-| Name                                               | Type | Description               |
-| -------------------------------------------------- | ---- | ------------------------- |
-| date <br /> <optional-tag>Optional</optional-tag> | type | Datetime of  measurement of the value requested in ISO 8601 format. To see the dates available, look up the variable in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar). If date is not provided, the latest available datapoint is returned.  |
-{: .doc-table }
+There are no query parameters for this endpoint.
  
 ## Response
  
@@ -58,79 +56,161 @@ The response will look something like:
  
 ```json
 {
- "date": "YYYY-MM-DD",
- "value": 1234,
- "facet": {...},
+  "entity": "dcid",
+  "info": {
+    "placeTypeSummary": {
+      "Country/State/City/Etc": {
+        "topPlaces": [{ "dcid": "dcid", "name": "Place Name" }],
+        "placeCount": 123,
+        "minValue": 123456,
+        "maxValue": 123456
+      }, ...
+    },
+    "provenanceSummary": {
+      "provenance_dcid": {
+        "importName": "Import_Name",
+        "releaseFrequency": "P<N>Y",
+        "seriesSummary": [
+          {
+            "seriesKey": { "observationPeriod": "P<N>Y" },
+            "earliestDate": "YYYY-MM-DD",
+            "latestDate": "YYYY-MM-DD",
+            "placeTypeSummary": {
+              "County/Country/State/Etc": {
+                "topPlaces": [
+                  { "dcid": "dcid", "name": "Place Name" },
+                  { "dcid": "dcid", "name": "Place Name" },
+                  { "dcid": "dcid", "name": "Plance Name" }
+                ],
+                "placeCount": 123,
+                "minValue": 12,
+                "maxValue": 123456
+              }, ...
+            },
+            "minValue": 12,
+            "maxValue": 123456,
+            "observationCount": 123,
+            "timeSeriesCount": 123
+          }
+        ],
+        "observationCount": 1234,
+        "timeSeriesCount": 1234
+      }
+    }
+  }
 }
 ```
+{: .response-signature .scroll}
  
 ### Response fields
  
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
-| value    | type   | Value of the variable queried for the queried entity. |
-| date     | string | Datetime the value returned was measured. |
-| facet    | dict   | Metadata on the [facet]({{ site.baseurl }}/api/rest/v1/getting_started#facet) the data came from. Can include things like provenance, measurement method, and units. |
+| entity   | string | DCID of the variable queried. |
+| info     | object | Information about the variable queried. Includes maximum and minimum values, and number of places with data on the variable queried, grouped by place type (country-level, state-level, city-level, etc. statistics are grouped together). Also includes information about the provenance of data for the variable queried. |
 {: .doc-table}
  
 ## Examples
  
-### Example 1: Get single value for given variable and entity
+### Example 1: Get information on a single variable
  
-Get the population count (DCID: `Count_Person`) for the United States of America (DCID: `country/USA`). Note that the latest entry available will be returned.
- 
-Request:
-{: .example-box-title}
-```bash
-$ curl --request GET --url \
-‘https://api.datacommons.org/v1/observations/point/Count_Person/country/USA’
-```
-{: .example-box-content}
- 
-Response:
-{: .example-box-title}
-```json
-{
- "date": "2020",
- "value": 331449281,
- "facet": {
-     "importName": "USDecennialCensus_RedistrictingRelease",
-     "provenanceUrl": "https://www.census.gov/programs-surveys/decennial-census/about/rdo/summary-files.html",
-     "measurementMethod": "USDecennialCensus"
-   }
-}
-```
-{: .example-box-content}
- 
- 
-### Example 2: Get single value at a **specific date**, for given variable and entity
- 
-Get the annual electricity generation (DCID: `Annual_Generation_Electricity`) of California (DCID: `geoId/06`) in 2018.
+Get basic information about the variable for number of farms (DCID: `Count_Farm`). 
  
 Request:
 {: .example-box-title}
 ```bash
 $ curl --request GET --url \
-‘https://api.datacommons.org/v1/observations/point/Annual_Generation_Electricity/geoId/06?date=2018’
+‘https://api.datacommons.org/v1/info/variable/Count_Farm’
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}
  
 Response:
 {: .example-box-title}
 ```json
 {
- {
-   "date": "2018",
-   "value": 195465638180,
-   "facet": {
-     "importName": "EIA_Electricity",
-     "provenanceUrl": "https://www.eia.gov/opendata/qb.php?category=0",
-     "unit": "KilowattHour"
-   }
- }
+  "entity": "Count_Farm",
+  "info": {
+    "placeTypeSummary": {
+      "Country": {
+        "topPlaces": [{ "dcid": "country/USA", "name": "United States" }],
+        "placeCount": 1,
+        "minValue": 123456,
+        "maxValue": 2042220
+      },
+      "State": {
+        "topPlaces": [
+          { "dcid": "geoId/06", "name": "California" },
+          { "dcid": "geoId/48", "name": "Texas" },
+          { "dcid": "geoId/12", "name": "Florida" }
+        ],
+        "placeCount": 50,
+        "minValue": 990,
+        "maxValue": 248416
+      },
+      "County": {
+        "topPlaces": [
+          { "dcid": "geoId/06037", "name": "Los Angeles County" },
+          { "dcid": "geoId/17031", "name": "Cook County" },
+          { "dcid": "geoId/48201", "name": "Harris County" }
+        ],
+        "placeCount": 3076,
+        "minValue": 2,
+        "maxValue": 5551
+      }
+    },
+    "provenanceSummary": {
+      "dc/m02b5p": {
+        "importName": "USDA_AgricultureCensus",
+        "releaseFrequency": "P5Y",
+        "seriesSummary": [
+          {
+            "seriesKey": { "observationPeriod": "P5Y" },
+            "earliestDate": "2017",
+            "latestDate": "2017",
+            "placeTypeSummary": {
+              "County": {
+                "topPlaces": [
+                  { "dcid": "geoId/06037", "name": "Los Angeles County" },
+                  { "dcid": "geoId/17031", "name": "Cook County" },
+                  { "dcid": "geoId/48201", "name": "Harris County" }
+                ],
+                "placeCount": 3076,
+                "minValue": 2,
+                "maxValue": 5551
+              },
+              "Country": {
+                "topPlaces": [
+                  { "dcid": "country/USA", "name": "United States" }
+                ],
+                "placeCount": 1,
+                "minValue": 2042220,
+                "maxValue": 2042220
+              },
+              "State": {
+                "topPlaces": [
+                  { "dcid": "geoId/06", "name": "California" },
+                  { "dcid": "geoId/48", "name": "Texas" },
+                  { "dcid": "geoId/12", "name": "Florida" }
+                ],
+                "placeCount": 50,
+                "minValue": 990,
+                "maxValue": 248416
+              }
+            },
+            "minValue": 2,
+            "maxValue": 2042220,
+            "observationCount": 3127,
+            "timeSeriesCount": 3127
+          }
+        ],
+        "observationCount": 3127,
+        "timeSeriesCount": 3127
+      }
+    }
+  }
 }
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}
  
  
 

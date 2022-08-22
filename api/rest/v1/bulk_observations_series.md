@@ -22,47 +22,49 @@ Retrieve a series of observations for multiple variables and entities.
  
 ## Request
 
-<div>
-{% tabs keyword %}
- 
-{% tab keyword GET Request %}
-GET https://api.datacommons.org/v1/bulk/observations/series?entities=entity_id1&entities=entity_id2&variables=variable_id1&variables=variable_id2
-{: #api-signature}
-{% endtab %}
- 
-{% tab keyword POST Request %}
+<div class="api-tab">
+  <button id="get-button" class="api-tablink" onclick="openTab(event, 'GET-request')">GET Request</button>
+  <button id="post-button" class="api-tablink" onclick="openTab(event, 'POST-request')">POST Request</button>
+</div>
 
-```bash
-POST \
---url https://api.datacommons.org/v1/bulk/observations/series \
---header 'content-type: application/json' \
---data '{
-   "entities": [
-       "entity_dcid_1",
-       "entity_dcid_2",
-       ...
-   ],
-   "variables: [
-       "variable_dcid_1",
-       "variable_dcid_2",
-       ...
-   ]
-}'
+
 ```
+https://api.datacommons.org/v1/bulk/observations/series?entities={entity_dcid_1}&entities={entity_dcid_2}&variables={variable_dcid_1}&variables={variable_dcid_2}
+```
+{: #GET-request .api-tabcontent .api-signature .scroll}
+
+
+```
+URL:
+https://api.datacommons.org/v1/bulk/observations/series
+
+JSON Data:
+{
+  "entities": [
+    "{entity_dcid_1}",
+    "{entity_dcid_2}",
+    ...
+  ],
+  "variables": [
+    "{variable_dcid_1}",
+    "{variable_dcid_2}",
+    ...
+  ]
+}
+```
+{: #POST-request .api-tabcontent .api-signature .scroll}
+
 
 <script src="/assets/js/syntax_highlighting.js"></script>
-{% endtab %}
+<script src="/assets/js/api-doc-tabs.js"></script>
  
-{% endtabs %}
-</div>
- 
-### Parameters
 
-#### Path Parameters
+
+### Path Parameters
 
 There are no path parameters for this endpoint.
 
-#### Query Parameters
+### Query Parameters
 
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
@@ -77,76 +79,77 @@ The response looks like:
 
 ```json
 {
-   "observationsByVariable": [
-       {
-           "variable": "variable1_dcid",
-           "observationsByEntity": [
-               {
-                   "entity": "entity1_dcid",
-                   "seriesByFacet": [
-                       {
-                           "series": [
-                               {
-                                   "date": "YYYY-MM-DD",
-                                   "value": 1234
-                               }, ...
-                           ],
-                           "facet": 1234567890
-                       }
-                   ]
-               },
-               {
-                   "entity": "entity2_dcid",
-                   "seriesByFacet": [
-                       {
-                           "series": [
-                               {
-                                   "date": "YYYY-MM-DD",
-                                   "value": 1234
-                               }, ...
-                           ],
-                           "facet": 1234567890
-                       }
-                   ]
-               }
-           ]
-       }, ...
-       {
-           "variable": "variable2_dcid",
-           "observationsByEntity": [
-               {
-                   "entity": "entity1_dcid",
-                   "seriesByFacet": [
-                       {
-                           "series": [
-                               {
-                                   "date": "YYYY-MM-DD",
-                                   "value": 1234
-                               }, ...
-                           ],
-                           "facet": 1234567890
-                       }
-                   ]
-               },
-               {
-                   "entity": "entity2_dcid",
-                   "seriesByFacet": [
-                       {
-                           "series": [
-                               {
-                                   "date": "YYYY-MM-DD",
-                                   "value": 1234
-                               }, ...
-                           ],
-                           "facet": 1234567890
-                       }
-                   ]
-               }
-           ]
-       }
-   ]
+  "observationsByVariable": [
+    {
+      "variable": "variable1_dcid",
+      "observationsByEntity": [
+        {
+          "entity": "entity1_dcid",
+          "seriesByFacet": [
+            {
+              "series": [
+                {
+                  "date": "YYYY-MM-DD",
+                  "value": 1234
+                }, ...
+              ],
+              "facet": 1234567890
+            }
+          ]
+        },
+        {
+          "entity": "entity2_dcid",
+          "seriesByFacet": [
+            {
+              "series": [
+                {
+                  "date": "YYYY-MM-DD",
+                  "value": 1234
+                }, ...
+              ],
+              "facet": 1234567890
+            }
+          ]
+        }
+      ]
+    }, ...
+    {
+      "variable": "variable2_dcid",
+      "observationsByEntity": [
+        {
+          "entity": "entity1_dcid",
+          "seriesByFacet": [
+            {
+              "series": [
+                {
+                  "date": "YYYY-MM-DD",
+                  "value": 1234
+                }, ...
+              ],
+              "facet": 1234567890
+            }
+          ]
+        },
+        {
+          "entity": "entity2_dcid",
+          "seriesByFacet": [
+            {
+              "series": [
+                {
+                  "date": "YYYY-MM-DD",
+                  "value": 1234
+                }, ...
+              ],
+              "facet": 1234567890
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 ```
+{: .response-signature .scroll}
 
 ### Response fields
 
@@ -174,8 +177,7 @@ Request:
 $ curl --request GET --url \
 ‘https://api.datacommons.org/v1/bulk/observations/series?entities=geoId/51&entities=geoId/48&variables=Annual_Consumption_Coal_ElectricPower&variables=WithdrawalRate_Water’
 ```
-
-{: .example-box-content}
+{: .example-box-content .scroll}
  
 {% endtab %}
  
@@ -191,7 +193,7 @@ $ curl --request POST \
 --header 'content-type: application/json' \
 --data '{"entities":["geoId/51", "geoId/48"], "variables":["Annual_Consumption_Coal_ElectricPower", "WithdrawalRate_Water"]}'
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}
  
 {% endtab %}
  
@@ -335,7 +337,7 @@ Response:
    ]
 }
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}
  
 <script src="/assets/js/tabs.js"></script>
  

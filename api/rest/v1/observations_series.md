@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Get a series of observations
-nav_order: 2
+nav_order: 1
 parent: v1 REST
 grand_parent: API
 published: false
@@ -19,15 +19,18 @@ Retrieve series of observations from a specific variable for an entity from the 
 </div>
  
 ## Request
+GET Request
+{: .api-header}
 
-GET https://api.datacommons.org/v1/observations/series/{ENTITY_DCID}/{VARIABLE_DCID}
-{: #api-signature}
+```
+https://api.datacommons.org/v1/observations/series/{ENTITY_DCID}/{VARIABLE_DCID}
+```
+{: .api-signature .scroll}
 
 <script src="/assets/js/syntax_highlighting.js"></script>
  
-### Parameters
 
-#### Path Parameters
+### Path Parameters
 
 | Name                                                | Description                   |
 | --------------------------------------------------- | ----------------------------- |
@@ -35,7 +38,7 @@ GET https://api.datacommons.org/v1/observations/series/{ENTITY_DCID}/{VARIABLE_D
 | ENTITY_DCID <br /> <required-tag>Required</required-tag> | DCID of the entity that the variable describes. |
 {: .doc-table }
  
-#### Query Parameters
+### Query Parameters
 
 There are no query string parameters for this method.
  
@@ -46,20 +49,21 @@ The response looks like:
 
 ```json
 {
-   "observations": [
-       {
-           "date": "YYYY-MM-DD",
-           "value": 1234
-       }, ...
-   ],
-   "facet": {
-       "importName": "Name",
-       "provenanceUrl": "https://provenance.url/",
-       "measurementMethod": "MeasurementMethod",
-       "unit": "unit"
-   }
+  "observations": [
+    {
+      "date": "YYYY-MM-DD",
+      "value": 1234
+    }, ...
+  ],
+  "facet": {
+    "importName": "Name",
+      "provenanceUrl": "https://provenance.url/",
+      "measurementMethod": "MeasurementMethod",
+      "unit": "unit"
+  }
 }
 ```
+{: .response-signature .scroll}
 
 ### Response fields
 
@@ -82,43 +86,43 @@ Request:
 $ curl --request GET --url \
 ‘https://api.datacommons.org/v1/observations/series/wikidataId/Q987/Mean_Rainfall’
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}
  
 Response:
 {: .example-box-title}
 
 ```json
 {
-   "observations": [
-       {
-           "date": "1901-01",
-           "value": 1.13871
-       },
-       {
-           "date": "1901-02",
-           "value": 0.487143
-       },
+  "observations": [
+    {
+      "date": "1901-01",
+      "value": 1.13871
+    },
+    {
+      "date": "1901-02",
+      "value": 0.487143
+    },
       
-       <... output truncated for brevity ...>
+    <... output truncated for brevity ...>
  
-       {
-           "date": "2022-02",
-           "value": 1.07331
-       },
-       {
-           "date": "2022-03"
-       }
-   ],
-   "facet": {
-       "importName": "NOAA_EPA_Observed_Historical_Weather",
-       "provenanceUrl": "https://www.noaa.gov/",
-       "measurementMethod": "NASAGSOD_NASAGHCN_EPA",
-       "unit": "Millimeter"
-   }
+    {
+      "date": "2022-02",
+      "value": 1.07331
+    },
+    {
+      "date": "2022-03"
+    }
+  ],
+  "facet": {
+    "importName": "NOAA_EPA_Observed_Historical_Weather",
+    "provenanceUrl": "https://www.noaa.gov/",
+    "measurementMethod": "NASAGSOD_NASAGHCN_EPA",
+    "unit": "Millimeter"
+  }
 }
  
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}
  
  
  

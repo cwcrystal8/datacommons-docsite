@@ -31,21 +31,60 @@ optional-tag {
 }
 
 //default formatting for response code signature
-//modeled after the <pre> tag's css
-#api-signature {
-  color: #4070a0;
-  font-family: monospace;
-  font-size: 0.9em;
-  padding: 1rem;
+
+.api-header {
+  border: 1px solid var(--dc-gray-lite);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #f1f1f1;
+  padding: 10px 20px;
+  margin-bottom: 0;
+  filter: drop-shadow(0 0 0.2em rgba(0,0,0,0.1));
+  font-size: 17px;
+}
+
+.api-signature{
+  border: 1px solid var(--dc-gray-lite);
+  border-top: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+  filter: drop-shadow(0 0.2em 0.2em rgba(0,0,0,0.1));
+}
+
+.api-signature pre {
+  margin-bottom: 0;
+  overflow: auto;
   background-color: #f5f6fa;
-  border: #ccc;
-  border-radius: 3px;
-  overflow-x: scroll;
+  padding: 30px;
+}
+
+.api-signature code {
+  color: #0e84b5;
+  font-family: monospace;
+  font-size: 1em;
+  background-color: #f5f6fa;
+}
+
+
+.response-signature {
+  overflow: hidden;
+  border-radius: 10px;
+  //border: 1px solid var(--dc-gray-lite);
+}
+
+
+.response-signature pre,
+.response-signature code {
+  font-size: 0.8em;
+  max-height: 40em;
+  margin-bottom: 0;
+  overflow: auto;
 }
 
 //highlighting for {parameter}
 .param {
-  color: #902000;
+  color: #ff686b;
   font-weight: bold;
   font-family: monospace;
 }
@@ -53,6 +92,11 @@ optional-tag {
 //highlighting for GET / POST keywords
 .keyword {
   color: #062873;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+.query-param {
   font-weight: bold;
   font-family: monospace;
 }
@@ -73,27 +117,99 @@ optional-tag {
 
 // for the "REQUEST:" and "RESPONSE" boxes in the example sections
 .example-box-title {
-  background-color: #dcdde1;
-  border: 1px solid var(--dc-gray-lite);
+  // background-color: #dcdde1;
+  background-color: #a3a8bb;
+  // border: 1px solid var(--dc-gray-lite);
+  border-bottom: none;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
-  font-size: 1em;
+  font-size: 0.75em;
   font-family: var(--font-family);
-  color: var(--dc-gray);
+  //color: var(--dc-gray);
+  color: #fff;
   text-transform: uppercase;
-  padding: 0.15em 0.5em 0.15em 0.5em;
+  padding: 0.35em 0.5em 0.35em 0.75em;
   margin-top: 0.5em;
   margin-bottom: 0;
 }
 
 .example-box-content {
-  background: #f5f6fa; //this should match background color of ``` code blocks
-  border: 1px solid var(--dc-gray-lite);
+  background: #f5f6fa;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   padding-bottom: 0;
   margin-top: 0;
-  margin-bottom: 0.5em;
+  margin-bottom: 0;
   max-height: 20em;
-  overflow: scroll;
+  font-size: 0.8em;
+  scrollbar-color: var(--dc-gray-lite);
+  scrollbar-width: 5px;
+  overflow: hidden;
+}
+
+.example-box-content pre {
+  max-height: 20em;
+  overflow: auto;
+}
+
+div.example-box-content .highlight {
+  margin-bottom: 0px;
+}
+
+.scroll pre::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+
+  &-thumb {
+    background-color: #d2d3d8;
+  }
+
+  &-corner {
+    background-color: transparent;
+  }
+
+}
+
+
+
+
+
+
+
+/* Style the tab */
+.api-tab {
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  overflow: hidden;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  filter: drop-shadow(0 0 0.2em rgba(0,0,0,0.1));
+}
+
+/* Style the buttons inside the tab */
+.api-tab button {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.api-tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.api-tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.api-tabcontent {
+  display: none;
+  border: 1px solid #ccc;
+  border-top: none;
 }
