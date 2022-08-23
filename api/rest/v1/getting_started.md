@@ -69,7 +69,7 @@ Still confused? Each endpoint's documentation page has examples at the bottom ta
 
 Most requests require the DCID of the entity or variable you wish to query. Curious what entities and variables are available? Want to find a DCID? Take a look at our explorer tools:
 
-- [Search](https://datacommons.org/s) Search Data Commons
+- [Search](https://datacommons.org/search) Search Data Commons
 - [Graph Browser](https://datacommons.org/browser/) Click through the knowledge graph
 - [Place Browser](https://datacommons.org/place) Summaries of data available for entities that are geographic locations
 - [Statistical Variable Explorer](https://datacommons.org/tools/statvar) See metadata for variables
@@ -159,7 +159,7 @@ This is most commonly seen when your request is missing a required path paramete
 Sometimes your query might return an empty result. This is most commonly seen when the value provided for a parameter is misspelled or doesn't exist. Make sure the values you are passing for parameters are spelled correctly.
 
 #### "Could not find field <field> in the type"
-```
+```json
 {
  "code": 3,
  "message": "Could not find field \"variables\" in the type \"datacommons.v1.BulkVariableInfoRequest\".",
@@ -178,19 +178,23 @@ This is most commonly seen when a query parameter is misspelled or incorrect. Ch
 Throughout the REST API documentation, you'll see the following terminology used:
 
 #### Entity
+{: #entity}
 
 An entity represented by a node in the Data Commons knowledge graph. These can represent a wide range of concepts, including [cities](https://datacommons.org/browser/City), [countries](https://datacommons.org/browser/Country), [elections](https://datacommons.org/browser/election/2016_P_US00), [schools](https://datacommons.org/browser/nces/062961004587), [plants](https://datacommons.org/browser/dc/bsmvthtq89217), or even the [Earth](https://datacommons.org/browser/Earth) itself.
 
 #### DCID
+{: #dcid}
 
 Short for 'Data Commons Identifier', a DCID is a distinct identifier for a node in the knowledge graph. These can represent variables or entities. For example, Austin, Texas, has a DCID of `geoId/4805000`, while the plant species _Austrobaileya scandens_ has a DCID of `dc/bsmvthtq89217`.
 
 #### Property
+{: #property}
 
 Attributes of the entities in the Data Common knowledge graph. Instead of statistical values, properties describe unchanging characteristics of entities, like [scientific name](https://datacommons.org/browser/scientificName).
 
 
 #### Triple
+{: #triple}
 
 A three-part grouping describing node and edge objects in the Data Commons graph.
 
@@ -208,11 +212,14 @@ USA -- typeOf ------------> Country
 USA -- name --------------> United States of America
 USA -- containedInPlace --> northamerica
 ```
+
 #### Place
+{: #place}
 
 Entities that describe specific geographic locations.
 
 #### Cohort
+{: #cohort}
 
 A group of entities sharing some characteristic. Interchangeably referred to in a Data Commons context as `Cohort` and `CohortSet`. Examples include [the CDC's list of the United States' 500 largest cities](https://datacommons.org/browser/CDC500_City).
 
@@ -222,28 +229,32 @@ A group of entities sharing some characteristic. Interchangeably referred to in 
 </div>
 
 #### Variable (Statistical Variable)
+{: #variable}
 
 Statistics that describe the entities in the Data Common knowledge graph. These are typically quantities and measurements, like [population](https://datacommons.org/tools/statvar#Count_Person) and [air quality index](https://datacommons.org/tools/statvar#AirQualityIndex_AirPollutant)).
 
 #### Observation (Statistical Variable Observation)
+{: #observation}
 
 Measurement of a variable, at a specific time for a specific entity.
 
-
-
 #### Date 
+{: #date}
 
 The date of measurement. Specified in ISO 8601 format. Examples include `2011` (the year 2011), `2019-06` (the month of June in the year 2019), and `2019-06-05T17:21:00-06:00` (5:17PM on June 5, 2019, in CST).
 
 #### Measurement Method 
+{: #measurement-method}
 
 The technique used for measuring a statistical variable. Describes how a measurement is made, whether by count or estimate or some other approach. May name the group making the measurement to indicate a certain organizational method of measurement is used. Examples include [the American Community Survey](https://datacommons.org/browser/dc/gg17432) and [`WorldHealthOrganizationEstimates`](https://datacommons.org/browser/WorldHealthOrganizationEstimates). Multiple measurement methods may be specified for any given node.
 
 #### Observation Period 
+{: #observation-period}
 
 The time period over which an observation is made. Specified in [ISO 8601 formatting for durations](https://en.wikipedia.org/wiki/ISO_8601#Durations).
 
 #### Scaling Factor 
+{: #scaling-factor}
 
 Property of statistical variables that measure proportions, used in conjunction with the measurementDenominator property to indicate the multiplication factor applied to the proportion's denominator (with the measurement value as the final result of the multiplication) when the numerator and denominator are not equal.
 
@@ -252,10 +263,12 @@ As an example, in 1999, [approximately 36% of Canadians were Internet users](htt
 A complete list of properties can be found in the [graph browser](https://datacommons.org/browser/scalingFactor).
 
 #### Measurement Denominator
+{: #measurement-denominator}
 
 The denominator of a fractional measurement.
 
 #### Unit
+{: #unit}
 
 The unit of measurement. Examples include [kilowatt hours](https://datacommons.org/browser/KilowattHour), [inches](https://datacommons.org/browser/Inch), and [Indian Rupees](https://datacommons.org/browser/IndianRupee). A complete list of properties can be found in the [graph browser](https://datacommons.org/browser/unit).
 

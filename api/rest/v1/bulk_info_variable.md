@@ -66,8 +66,8 @@ JSON Data:
 
 | Name                                                | Description                   |
 | --------------------------------------------------- | ----------------------------- |
-| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | DCID of the variable to query a value for. |
-| ENTITY_DCID <br /> <required-tag>Required</required-tag> | DCID of entity that the variable describes. |
+| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | [DCID](/api/rest/v1/getting_started#dcid) of the variable to query a value for. |
+| ENTITY_DCID <br /> <required-tag>Required</required-tag> | [DCID](/api/rest/v1/getting_started#dcid) of entity that the variable describes. |
 {: .doc-table }
 
 ### Query Parameters

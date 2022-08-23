@@ -34,8 +34,8 @@ https://api.datacommons.org/v1/observations/series/{ENTITY_DCID}/{VARIABLE_DCID}
 
 | Name                                                | Description                   |
 | --------------------------------------------------- | ----------------------------- |
-| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | DCID of the variable to query a value for. |
-| ENTITY_DCID <br /> <required-tag>Required</required-tag> | DCID of the entity that the variable describes. |
+| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | [DCID](/api/rest/v1/getting_started#dcid) of the variable to query a value for. |
+| ENTITY_DCID <br /> <required-tag>Required</required-tag> | [DCID](/api/rest/v1/getting_started#dcid) of the entity that the variable describes. |
 {: .doc-table }
  
 ### Query Parameters
@@ -70,7 +70,7 @@ The response looks like:
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
 | observations    | list | A list of {date, value} pairs for the variable queried, where date is the date of measurement and value the measured value for the variable. Pairs are returned in chronological order. |
-| facet    | dict   | Metadata on the facet the data came from. Can include things like provenance, measurement method, and units. |
+| facet    | dict   | Metadata on the [facet](/api/rest/v1/getting_started#facet) the data came from. Can include things like provenance, measurement method, and units. |
 {: .doc-table}
  
 ## Examples

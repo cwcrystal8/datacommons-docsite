@@ -33,8 +33,8 @@ https://api.datacommons.org/v1/observations/point/{ENTITY_DCID}/{VARIABLE_DCID}
 
 | Name                                                       | Description                                     |
 | ---------------------------------------------------------- | ----------------------------------------------- |
-| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | DCID of the variable to query a value for.      |
-| ENTITY_DCID <br /> <required-tag>Required</required-tag>   | DCID of the entity that the variable describes. |
+| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | [DCID](/api/rest/v1/getting_started#dcid) of the variable to query a value for.      |
+| ENTITY_DCID <br /> <required-tag>Required</required-tag>   | [DCID](/api/rest/v1/getting_started#dcid) of the entity that the variable describes. |
 {: .doc-table }
 
 ### Query Parameters

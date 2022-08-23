@@ -14,7 +14,7 @@ permalink: /api/rest/v1/info/variable
  
 Get basic information about a variable.
  
-This API returns basic information on a variable, given the variable's DCID. The information provided includes the number of places that have data for the variable, the minimum and maximum value observed, and the name and DCID of the top 3 entities with highest observed values for that variable. The information is grouped by place type (country, state, county, etc.).
+This API returns basic information on a variable, given the variable's [DCID](/api/rest/v1/getting_started#dcid). The information provided includes the number of places that have data for the variable, the minimum and maximum value observed, and the name and DCID of the top 3 entities with highest observed values for that variable. The information is grouped by place type (country, state, county, etc.).
  
 <div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>Tip:</b><br />
@@ -43,7 +43,7 @@ https://api.datacommons.org/v1/info/variable/{VARIABLE_DCID}
  
 | Name                                                | Description                   |
 | --------------------------------------------------- | ----------------------------- |
-| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | DCID of the variable to query a value for. |
+| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | [DCID](/api/rest/v1/getting_started#dcid) of the variable to query a value for. |
 {: .doc-table}
  
 ### Query Parameters
@@ -106,7 +106,7 @@ The response will look something like:
  
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
-| entity   | string | DCID of the variable queried. |
+| entity   | string | [DCID](/api/rest/v1/getting_started#dcid) of the variable queried. |
 | info     | object | Information about the variable queried. Includes maximum and minimum values, and number of places with data on the variable queried, grouped by place type (country-level, state-level, city-level, etc. statistics are grouped together). Also includes information about the provenance of data for the variable queried. |
 {: .doc-table}
  

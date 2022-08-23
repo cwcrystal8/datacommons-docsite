@@ -68,9 +68,9 @@ There are no path parameters for this endpoint.
 
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
-| entities <br /><required-tag>Required</required-tag> | Repeated string | DCIDs of the entities the variables describe. |
-| variables <br /><required-tag>Required</required-tag> | Repeated string | DCIDs of the variables to query observations for.
-| all_facets <br /><optional-tag>Optional</optional-tag> | Boolean | Whether to return data from all facets available. If true, data from all facets available will be returned. If false, only data from the preferred facet will be returned. Defaults to false.
+| entities <br /><required-tag>Required</required-tag> | Repeated string | [DCIDs](/api/rest/v1/getting_started#dcid) of the entities the variables describe. |
+| variables <br /><required-tag>Required</required-tag> | Repeated string | [DCIDs](/api/rest/v1/getting_started#dcid) of the variables to query observations for.
+| all_facets <br /><optional-tag>Optional</optional-tag> | Boolean | Whether to return data from all [facets](/api/rest/v1/getting_started#facet) available. If true, data from all facets available will be returned. If false, only data from the [preferred facet](/api/rest/v1/getting_started#preferred-facet) will be returned. Defaults to false.
 {: .doc-table }
 
 ## Response
@@ -155,8 +155,8 @@ The response looks like:
 
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
-| observationsByVariable   | list   | List of observations organized by variable. These are further organized by entity, and then by facet.|
-| facets    | object   | Metadata on the facet(s) the data came from. Can include things like provenance, measurement method, and units. |
+| observationsByVariable   | list   | List of observations organized by variable. These are further organized by entity, and then by [facet](/api/rest/v1/getting_started#facet).|
+| facets    | object   | Metadata on the [facet(s)](/api/rest/v1/getting_started#facet) the data came from. Can include things like provenance, measurement method, and units. |
 {: .doc-table}
 
 ## Examples
