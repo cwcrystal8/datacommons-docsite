@@ -246,7 +246,7 @@ The date of measurement. Specified in ISO 8601 format. Examples include `2011` (
 #### Measurement Method 
 {: #measurement-method}
 
-The technique used for measuring a statistical variable. Describes how a measurement is made, whether by count or estimate or some other approach. May name the group making the measurement to indicate a certain organizational method of measurement is used. Examples include [the American Community Survey](https://datacommons.org/browser/dc/gg17432) and [`WorldHealthOrganizationEstimates`](https://datacommons.org/browser/WorldHealthOrganizationEstimates). Multiple measurement methods may be specified for any given node.
+The technique used for measuring a statistical variable. Describes how a measurement is made, whether by count or estimate or some other approach. Some measurement methods are names of authoritative organizations, which refer to the measurement methods used by that organization. Examples of measurement methods that are organization names include [the American Community Survey](https://datacommons.org/browser/dc/gg17432) and [`WorldHealthOrganizationEstimates`](https://datacommons.org/browser/WorldHealthOrganizationEstimates). 
 
 #### Observation Period 
 {: #observation-period}
@@ -275,7 +275,7 @@ The unit of measurement. Examples include [kilowatt hours](https://datacommons.o
 #### Facet
 {: #facet}
 
-Metadata on properties of the data and its provenance. For example, multiple sources might provide data on the same variable, but use different measurement methods, cover data spanning different time spans, or used different underlying predictive models. Data Commons uses "facet" to refer to a data's source and its associated metadata.
+Metadata on properties of the data and its provenance. For example, multiple sources might provide data on the same variable, but use different measurement methods, cover data spanning different time spans, or use different underlying predictive models. Data Commons uses "facet" to refer to a data's source and its associated metadata.
 
 
 #### Preferred Facet

@@ -77,7 +77,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-‘https://api.datacommons.org/v1/observations/point/country/USA/Count_Person’
+'https://api.datacommons.org/v1/observations/point/country/USA/Count_Person'
 ```
 {: .example-box-content .scroll}
 

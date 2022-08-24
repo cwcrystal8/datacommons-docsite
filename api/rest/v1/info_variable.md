@@ -12,7 +12,7 @@ permalink: /api/rest/v1/info/variable
  
 ## /v1/info/variable
  
-Get basic information about a variable.
+Get basic information about a [variable](/api/rest/v1/getting_started#variable).
  
 This API returns basic information on a variable, given the variable's [DCID](/api/rest/v1/getting_started#dcid). The information provided includes the number of places that have data for the variable, the minimum and maximum value observed, and the name and DCID of the top 3 entities with highest observed values for that variable. The information is grouped by place type (country, state, county, etc.).
  
@@ -43,7 +43,7 @@ https://api.datacommons.org/v1/info/variable/{VARIABLE_DCID}
  
 | Name                                                | Description                   |
 | --------------------------------------------------- | ----------------------------- |
-| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | [DCID](/api/rest/v1/getting_started#dcid) of the variable to query a value for. |
+| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | [DCID](/api/rest/v1/getting_started#dcid) of the variable to query information for. |
 {: .doc-table}
  
 ### Query Parameters
@@ -52,7 +52,7 @@ There are no query parameters for this endpoint.
  
 ## Response
  
-The response will look something like:
+The response looks like:
  
 ```json
 {
@@ -120,7 +120,7 @@ Request:
 {: .example-box-title}
 ```bash
 $ curl --request GET --url \
-‘https://api.datacommons.org/v1/info/variable/Count_Farm’
+'https://api.datacommons.org/v1/info/variable/Count_Farm'
 ```
 {: .example-box-content .scroll}
  

@@ -175,7 +175,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-‘https://api.datacommons.org/v1/bulk/observations/series?entities=geoId/51&entities=geoId/48&variables=Annual_Consumption_Coal_ElectricPower&variables=WithdrawalRate_Water’
+'https://api.datacommons.org/v1/bulk/observations/series?entities=geoId/51&entities=geoId/48&variables=Annual_Consumption_Coal_ElectricPower&variables=WithdrawalRate_Water'
 ```
 {: .example-box-content .scroll}
  

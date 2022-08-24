@@ -47,8 +47,8 @@ Methods for exploring the graph around a set of nodes.
 | Get triples | /v1/triples | Get neighboring nodes and property labels of directed edges of a specific entity
 | Get properties | /v1/properties | Get all properties (labels of directed edges) available for a specific entity |
 | Get variables | /v1/variables | Get all variables associated with a specific entity |
-| Get info on a place |/v1/info/place | Get basic information about a specific entity that is a place |
-| Get info on a variable | /v1/info/variable | Get information about a specific variable |
+| Get info on a place |[/v1/info/place](/api/rest/v1/info/place) | Get basic information about a specific entity that is a place |
+| Get info on a variable | [/v1/info/variable](/api/rest/v1/info/variable) | Get information about a specific variable |
  
 {: .main}
  
@@ -83,6 +83,6 @@ Bulk versions of above APIs, designed for handling multiple queries at a time, w
 | Get property values | /v1/bulk/property/values | Get property values for multiple properties and multiple entities |
 | Get triples | /v1/bulk/triples | Get neighboring nodes and edge labels for multiple entities |
 | Get variables | /v1/bulk/variables | Get all variables available for multiple entities |
-| Get info on places | /v1/bulk/info/place | Get information about multiple entities that are places |
-| Get info on variables | /v1/bulk/info/variables | Get information about multiple variables |
+| Get info on places | [/v1/bulk/info/place](/api/rest/v1/bulk/info/place) | Get information about multiple entities that are places |
+| Get info on variables | [/v1/bulk/info/variable](/api/rest/v1/bulk/info/variable) | Get information about multiple variables |
 {: .main}

@@ -84,7 +84,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-‘https://api.datacommons.org/v1/observations/series/wikidataId/Q987/Mean_Rainfall’
+'https://api.datacommons.org/v1/observations/series/wikidataId/Q987/Mean_Rainfall'
 ```
 {: .example-box-content .scroll}
  

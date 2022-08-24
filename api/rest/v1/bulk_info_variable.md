@@ -12,9 +12,9 @@ permalink: /api/rest/v1/bulk/info/variable
 
 ## /v1/bulk/info/variable
 
-Get basic information about multiple variables.
+Get basic information about multiple [variables](/api/rest/v1/getting_started#variable).
 
-This API returns basic information on multiple variables, given each of their DCIDs. The information is provided per variable, and includes the number of places with data on each variable, the minimum and maximum values observed, and the name and DCID of the top 3 entities with highest observed values for each variable.
+This API returns basic information on multiple variables, given each of their [DCIDs](/api/rest/v1/getting_started#dcid). The information is provided per variable, and includes the number of places with data on each variable, the minimum and maximum values observed, and the name and DCID of the top 3 entities with highest observed values for each variable.
 
 <div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>Tip:</b><br />
@@ -37,7 +37,7 @@ This API returns basic information on multiple variables, given each of their DC
 </div> 
 
 ```
-https://api.datacommons.org/v1/bulk/info/variable?entities={entity_dcid_1}&entities={entity_dcid_2}
+https://api.datacommons.org/v1/bulk/info/variable?entities={variable_dcid_1}&entities={variable_dcid_2}
 ```
 {: #GET-request .api-tabcontent .api-signature .scroll}
 
@@ -49,8 +49,8 @@ https://api.datacommons.org/v1/bulk/info/variable
 JSON Data:
 {
   "entities": [
-    "{entity_dcid_1}",
-    "{entity_dcid_2}",
+    "{variable_dcid_1}",
+    "{variable_dcid_2}",
     ...
   ]
 }
@@ -64,17 +64,13 @@ JSON Data:
 
 ### Path Parameters
 
-| Name                                                | Description                   |
-| --------------------------------------------------- | ----------------------------- |
-| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | [DCID](/api/rest/v1/getting_started#dcid) of the variable to query a value for. |
-| ENTITY_DCID <br /> <required-tag>Required</required-tag> | [DCID](/api/rest/v1/getting_started#dcid) of entity that the variable describes. |
-{: .doc-table }
+This endpoint has no path parameters.
 
 ### Query Parameters
 
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
-| date <br /> <optional-tag>Optional</optional-tag> | type | Datetime of  measurement of the value requested in ISO 8601 format. To see the dates available, lookup the variable in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar). If date is not provided, the latest available datapoint is returned.  |
+| entities <br /> <optional-tag>Required</optional-tag> | string | [DCIDs](/api/rest/v1/getting_started#dcid) of the variables to query information for. |
 {: .doc-table }
 
 ## Response
@@ -83,9 +79,82 @@ The response looks like:
 
 ```json
 {
-  "date": "YYYY-MM-DD",
-  "value": 1234,
-  "facet": {...},
+  "data":
+  [
+    {
+      "entity": "Variable_1_DCID",
+      "info":
+      {
+        "placeTypeSummary":
+        {
+          "County/City/State/Etc":
+          {
+            "topPlaces":
+            [
+              {
+                "dcid": "Place DCID",
+                "name": "Place Name"
+              },
+              {
+                "dcid": "Place DCID",
+                "name": "Place Name"
+              },
+              {
+                "dcid": "Place DCID",
+                "name": "Place Name"
+              }
+            ],
+            "placeCount": 123,
+            "minValue": 1,
+            "maxValue": 12345
+          }, ...
+        "provenanceSummary":
+        {
+          "DCID":
+          {
+            "importName": "Import_Name",
+            "releaseFrequency": "P<N>Y",
+            "seriesSummary":
+            [
+              {
+                "seriesKey":
+                {
+                  "observationPeriod": "P<N>Y"
+                },
+                "earliestDate": "YYYY-MM-DD",
+                "latestDate": "YYYY-MM-DD",
+                "placeTypeSummary":
+                {
+                  "Country/State/City/Etc":
+                  {
+                    "topPlaces":
+                    [
+                      {
+                        "dcid": "Place DCID",
+                        "name": "Place Name"
+                      }
+                    ],
+                    "placeCount": 123,
+                    "minValue": 1,
+                    "maxValue": 123456
+                  }, ...
+                "minValue": 1,
+                "maxValue": 123456,
+                "observationCount": 123,
+                "timeSeriesCount": 123
+              }, ...
+            ],
+            "observationCount": 123,
+            "timeSeriesCount": 123
+          }
+        }
+      }
+    },
+    {
+      "entity": "Variable_2_DCID",
+      "info": {...}
+    }, ...
+  ]
 }
 ```
 {: .response-signature .scroll}
@@ -94,94 +163,186 @@ The response looks like:
 
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
-| value    | type   | Value of the variable queried for the queried entity. |
-| date     | string | Datetime the value returned was measured. |
-| facet    | dict   | Metadata on the [facet](/api/rest/v1/getting_started#facet) the data came from. Can include things like provenance, measurement method, and units. |
+| entity   | string | [DCID](/api/rest/v1/getting_started#dcid) of the variable queried. |
+| info     | object | Information about the variable queried. Includes maximum and minimum values, and number of places with data on the variable queried, grouped by place type (country-level, state-level, city-level, etc. statistics are grouped together). Also includes information about the provenance of data for the variable queried. |
 {: .doc-table}
 
 ## Examples
 
-### Example 1: Get single value for given variable and entity
+### Example 1: Get information for multiple variables
 
-Get the population count (DCID: `Count_Person`) for the United States of America (DCID: `country/USA`). Note that the latest entry available will be returned.
+Get information on the variables for number of farms (DCID: `Count_Farm`) and number of teachers (DCID: `Count_Teacher`).
 
+<div>
+{% tabs example1 %}
+ 
+{% tab example1 GET Request %}
+ 
 Request:
 {: .example-box-title}
+
 ```bash
 $ curl --request GET --url \ 
-‘https://api.datacommons.org/v1/bulk/info/variable?entities=Count_Farm&entities=Amount_Stock’
+'https://api.datacommons.org/v1/bulk/info/variable?entities=Count_Farm&entities=Count_Teacher'
 ```
 {: .example-box-content .scroll}
+ 
+{% endtab %}
+ 
+ 
+{% tab example1 POST Request %}
+ 
+Request:
+{: .example-box-title}
+
+```bash
+$ curl --request POST \
+--url https://api.datacommons.org/v1/bulk/info/variable \
+--header 'content-type: application/json' \
+--data '{"entities":["Count_Farm", "Count_Teacher"]}'
+```
+{: .example-box-content .scroll}
+ 
+{% endtab %}
+ 
+{% endtabs %}
+</div>
 
 Response:
 {: .example-box-title}
 ```json
 {
-  "data": [
+  "data":
+  [
     {
       "entity": "Count_Farm",
-      "info": {
-        "placeTypeSummary": {
-          "Country": {
-            "topPlaces": [{ "dcid": "country/USA", "name": "United States" }],
-            "placeCount": 1,
-            "minValue": 2042220,
-            "maxValue": 2042220
-          },
-          "State": {
-            "topPlaces": [
-              { "dcid": "geoId/06", "name": "California" },
-              { "dcid": "geoId/48", "name": "Texas" },
-              { "dcid": "geoId/12", "name": "Florida" }
-            ],
-            "placeCount": 50,
-            "minValue": 990,
-            "maxValue": 248416
-          },
-          "County": {
-            "topPlaces": [
-              { "dcid": "geoId/06037", "name": "Los Angeles County" },
-              { "dcid": "geoId/17031", "name": "Cook County" },
-              { "dcid": "geoId/48201", "name": "Harris County" }
+      "info":
+      {
+        "placeTypeSummary":
+        {
+          "County":
+          {
+            "topPlaces":
+            [
+              {
+                "dcid": "geoId/06037",
+                "name": "Los Angeles County"
+              },
+              {
+                "dcid": "geoId/17031",
+                "name": "Cook County"
+              },
+              {
+                "dcid": "geoId/48201",
+                "name": "Harris County"
+              }
             ],
             "placeCount": 3076,
             "minValue": 2,
             "maxValue": 5551
+          },
+          "Country":
+          {
+            "topPlaces":
+            [
+              {
+                "dcid": "country/USA",
+                "name": "United States"
+              }
+            ],
+            "placeCount": 1,
+            "minValue": 2042220,
+            "maxValue": 2042220
+          },
+          "State":
+          {
+            "topPlaces":
+            [
+              {
+                "dcid": "geoId/06",
+                "name": "California"
+              },
+              {
+                "dcid": "geoId/48",
+                "name": "Texas"
+              },
+              {
+                "dcid": "geoId/12",
+                "name": "Florida"
+              }
+            ],
+            "placeCount": 50,
+            "minValue": 990,
+            "maxValue": 248416
           }
         },
-        "provenanceSummary": {
-          "dc/m02b5p": {
+        "provenanceSummary":
+        {
+          "dc/m02b5p":
+          {
             "importName": "USDA_AgricultureCensus",
             "releaseFrequency": "P5Y",
-            "seriesSummary": [
+            "seriesSummary":
+            [
               {
-                "seriesKey": { "observationPeriod": "P5Y" },
+                "seriesKey":
+                {
+                  "observationPeriod": "P5Y"
+                },
                 "earliestDate": "2017",
                 "latestDate": "2017",
-                "placeTypeSummary": {
-                  "Country": {
-                    "topPlaces": [
-                      { "dcid": "country/USA", "name": "United States" }
+                "placeTypeSummary":
+                {
+                  "Country":
+                  {
+                    "topPlaces":
+                    [
+                      {
+                        "dcid": "country/USA",
+                        "name": "United States"
+                      }
                     ],
                     "placeCount": 1,
                     "minValue": 2042220,
                     "maxValue": 2042220
                   },
-                  "State": {
-                    "topPlaces": [
-                      { "dcid": "geoId/06", "name": "California" },
-                      { "dcid": "geoId/48", "name": "Texas" },
-                      { "dcid": "geoId/12", "name": "Florida" }
+                  "State":
+                  {
+                    "topPlaces":
+                    [
+                      {
+                        "dcid": "geoId/06",
+                        "name": "California"
+                      },
+                      {
+                        "dcid": "geoId/48",
+                        "name": "Texas"
+                      },
+                      {
+                        "dcid": "geoId/12",
+                        "name": "Florida"
+                      }
                     ],
                     "placeCount": 50,
                     "minValue": 990,
                     "maxValue": 248416
                   },
-                  "County": {
-                    "topPlaces": [
-                      { "dcid": "geoId/06037", "name": "Los Angeles County" },
-                      { "dcid": "geoId/17031", "name": "Cook County" },
-                      { "dcid": "geoId/48201", "name": "Harris County" }
+                  "County":
+                  {
+                    "topPlaces":
+                    [
+                      {
+                        "dcid": "geoId/06037",
+                        "name": "Los Angeles County"
+                      },
+                      {
+                        "dcid": "geoId/17031",
+                        "name": "Cook County"
+                      },
+                      {
+                        "dcid": "geoId/48201",
+                        "name": "Harris County"
+                      }
                     ],
                     "placeCount": 3076,
                     "minValue": 2,
@@ -201,57 +362,113 @@ Response:
       }
     },
     {
-      "entity": "Amount_Stock",
-      "info": {
-        "placeTypeSummary": {
-          "Place": {
-            "topPlaces": [{ "dcid": "Earth", "name": "Earth" }],
-            "placeCount": 1,
-            "minValue": 2318922620000,
-            "maxValue": 79233321687795.8
-          },
-          "Country": {
-            "topPlaces": [
-              { "dcid": "country/CHN", "name": "China" },
-              { "dcid": "country/IND", "name": "India" },
-              { "dcid": "country/USA", "name": "United States" }
-            ],
-            "placeCount": 99,
-            "maxValue": 32120702650000
-          }
-        },
-        "provenanceSummary": {
-          "dc/jccrh82": {
-            "importName": "WorldDevelopmentIndicators",
-            "seriesSummary": [
+      "entity": "Count_Teacher",
+      "info":
+      {
+        "placeTypeSummary":
+        {
+          "SchoolDistrict":
+          {
+            "topPlaces":
+            [
               {
-                "seriesKey": { "observationPeriod": "P1Y", "unit": "USDollar" },
-                "earliestDate": "1975",
-                "latestDate": "2019",
-                "placeTypeSummary": {
-                  "Country": {
-                    "topPlaces": [
-                      { "dcid": "country/CHN", "name": "China" },
-                      { "dcid": "country/IND", "name": "India" },
-                      { "dcid": "country/USA", "name": "United States" }
-                    ],
-                    "placeCount": 99,
-                    "maxValue": 32120702650000
-                  },
-                  "Place": {
-                    "topPlaces": [{ "dcid": "Earth", "name": "Earth" }],
-                    "placeCount": 1,
-                    "minValue": 2318922620000,
-                    "maxValue": 79233321687795.8
-                  }
-                },
-                "maxValue": 79233321687795.8,
-                "observationCount": 2290,
-                "timeSeriesCount": 100
+                "dcid": "geoId/sch3620580",
+                "name": "New York City Department Of Education"
+              },
+              {
+                "dcid": "geoId/sch0622710",
+                "name": "Los Angeles Unified"
+              },
+              {
+                "dcid": "geoId/sch1709930",
+                "name": "Chicago Public School District 299"
               }
             ],
-            "observationCount": 2290,
-            "timeSeriesCount": 100
+            "placeCount": 18952,
+            "maxValue": 28769.06
+          },
+          "School":
+          {
+            "topPlaces":
+            [
+              {
+                "dcid": "nces/568025400549"
+              },
+              {
+                "dcid": "nces/568025300548",
+                "name": "Wyoming Behavioral Institute"
+              },
+              {
+                "dcid": "nces/568025200350",
+                "name": "Youth Emergency Services Inc."
+              }
+            ],
+            "placeCount": 102977,
+            "maxValue": 1702
+          }
+        },
+        "provenanceSummary":
+        {
+          "dc/mzy8we":
+          {
+            "importName": "K12",
+            "releaseFrequency": "P1Y",
+            "seriesSummary":
+            [
+              {
+                "seriesKey":
+                {},
+                "earliestDate": "2011",
+                "latestDate": "2016",
+                "placeTypeSummary":
+                {
+                  "SchoolDistrict":
+                  {
+                    "topPlaces":
+                    [
+                      {
+                        "dcid": "geoId/sch3620580",
+                        "name": "New York City Department Of Education"
+                      },
+                      {
+                        "dcid": "geoId/sch0622710",
+                        "name": "Los Angeles Unified"
+                      },
+                      {
+                        "dcid": "geoId/sch1709930",
+                        "name": "Chicago Public School District 299"
+                      }
+                    ],
+                    "placeCount": 18952,
+                    "maxValue": 28769.06
+                  },
+                  "School":
+                  {
+                    "topPlaces":
+                    [
+                      {
+                        "dcid": "nces/568025400549"
+                      },
+                      {
+                        "dcid": "nces/568025300548",
+                        "name": "Wyoming Behavioral Institute"
+                      },
+                      {
+                        "dcid": "nces/568025200350",
+                        "name": "Youth Emergency Services Inc."
+                      }
+                    ],
+                    "placeCount": 102977,
+                    "maxValue": 1702
+                  }
+                },
+                "maxValue": 28769.06,
+                "observationCount": 618283,
+                "timeSeriesCount": 121929
+              }
+            ],
+            "observationCount": 618283,
+            "timeSeriesCount": 121929
           }
         }
       }
