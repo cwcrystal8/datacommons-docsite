@@ -32,10 +32,11 @@ This API returns basic information on a variable, given the variable's [DCID](/a
 ## Request
 GET Request
 {: .api-header}
-```
+
+<div class="api-signature">
 https://api.datacommons.org/v1/info/variable/{VARIABLE_DCID}
-```
-{: .api-signature .scroll}
+</div>
+
 <script src="/assets/js/syntax_highlighting.js"></script>
 
  

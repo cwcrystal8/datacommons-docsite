@@ -32,10 +32,11 @@ This API returns basic information on a place, given the place's [DCID](/api/res
 ## Request
 GET Request
 {: .api-header}
-```
+
+<div class="api-signature">
 https://api.datacommons.org/v1/info/place/{PLACE_DCID}
-```
-{: .api-signature .scroll}
+</div>
+
 <script src="/assets/js/syntax_highlighting.js"></script>
 
  
