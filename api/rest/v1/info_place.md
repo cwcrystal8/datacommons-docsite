@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Get info on a place
-nav_order: 2
+title: Info on a place
+nav_order: 1
 parent: v1 REST
 grand_parent: API
 published: false
@@ -14,7 +14,7 @@ permalink: /api/rest/v1/info/place
  
 Get basic information about a [place](/api/rest/v1/getting_started#place).
  
-This API returns basic information on a place, given the place's [DCID](/api/rest/v1/getting_started#dcid). The information provided includes the place's name, type (City, State, Country, etc.), as well as information on all "parent" places that contain the place queried.
+This API returns basic information on a place, given the place's [DCID](/api/rest/v1/getting_started#dcid). The information provided includes the place's name, type (city, state, country, etc.), as well as information on all parent places that contain the place queried.
  
 <div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>Tip:</b><br />

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Get info on a variable
+title: Info on a variable
 nav_order: 2
 parent: v1 REST
 grand_parent: API

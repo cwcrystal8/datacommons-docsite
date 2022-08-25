@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Get info on a place
+title: Info on a place
 nav_exclude: true
 parent: v1 REST
 grand_parent: API
@@ -14,7 +14,7 @@ permalink: /api/rest/v1/bulk/info/place
 
 Get basic information about multiple [places](/api/rest/v1/getting_started#place).
 
-This API returns basic information on multiple places, given each of their DCIDs. The information provided is per place, and includes the place's name, type (City, State, Country, etc.), as well as information on all "parent" places that contain the place queried.
+This API returns basic information on multiple places, given each of their DCIDs. The information provided is per place, and includes the place's name, type (city, state, country, etc.), as well as information on all parent places that contain the place queried.
 
 <div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>Tip:</b><br />
@@ -36,13 +36,12 @@ This API returns basic information on multiple places, given each of their DCIDs
   <button id="post-button" class="api-tablink" onclick="openTab(event, 'POST-request')">POST Request</button>
 </div> 
 
-```
+<div id="GET-request" class="api-tabcontent api-signature"><div class="scroll">
 https://api.datacommons.org/v1/bulk/info/place?entities={place_dcid_1}&entities={place_dcid_2}
-```
-{: #GET-request .api-tabcontent .api-signature .scroll}
+</div></div>
 
 
-```
+<div id="POST-request" class="api-tabcontent api-signature">
 URL:
 https://api.datacommons.org/v1/bulk/info/place
 
@@ -54,8 +53,7 @@ JSON Data:
     ...
   ]
 }
-```
-{: #POST-request .api-tabcontent .api-signature .scroll}
+</div>
 
 
 <script src="/assets/js/syntax_highlighting.js"></script>
