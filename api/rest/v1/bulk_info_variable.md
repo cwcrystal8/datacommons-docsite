@@ -184,7 +184,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \ 
-'https://api.datacommons.org/v1/bulk/info/variable?entities=Count_Farm&entities=Count_Teacher&key=AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'
+'https://api.datacommons.org/v1/bulk/info/variable?entities=Count_Farm&entities=Count_Teacher&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
  
@@ -199,7 +199,7 @@ Request:
 ```bash
 $ curl --request POST \
 --url https://api.datacommons.org/v1/bulk/info/variable \
---header 'X-API-Key: AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo' \
+--header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
 --data '{"entities":["Count_Farm", "Count_Teacher"]}'
 ```
 {: .example-box-content .scroll}

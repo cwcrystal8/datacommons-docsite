@@ -10,9 +10,9 @@ permalink: /api/rest/v1/bulk/properties
 
 # /v1/bulk/properties
 
-One line summary of what it does.
+Get all [properties](/glossary.html#property) associated with a specific entity, for multiple entities.
 
-Longer details if necessary can go in a short paragraph here. This is where to document any particular nuances in behavior or to provide special notes for end users. If there’s any special Data Commons terminology to define (e.g. triples), that should be done here as well.
+More specifically, this endpoint returns the labels of the edges connected to a specific node in the Data Commons Knowledge Graph. Edges in the graph are directed, so properties can either be labels for edges _towards_ or _away_ from the node. Outgoing edges correspond to properties of the node. Incoming edges denote that the node is the value of this property for some other node.
 
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
@@ -65,7 +65,7 @@ JSON Data:
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
 | key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| query <br /> <optional-tag>Optional</optional-tag> | type | description of query here |
+| entities <br /> <optional-tag>Optional</optional-tag> | type | description of query here |
 {: .doc-table }
  
  
@@ -133,7 +133,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/bulk/end/point?key=AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'
+'https://api.datacommons.org/v1/bulk/end/point?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
  
@@ -148,7 +148,7 @@ Request:
 ```bash
 $ curl --request POST \
 --url https://api.datacommons.org/v1/bulk/end/point \
---header 'key: AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo' \
+--header 'key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
 --data '{"entities":["geoId/06", "geoId/48"], "variables":["Count_Person_Male", "Count_Person_Female"], "date":"2019"}'
 ```
 {: .example-box-content .scroll}

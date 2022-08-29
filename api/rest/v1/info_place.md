@@ -100,7 +100,7 @@ Request:
 {: .example-box-title}
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/info/place/geoId/3651000?key=AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'
+'https://api.datacommons.org/v1/info/place/geoId/3651000?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
  

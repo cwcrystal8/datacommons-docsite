@@ -124,7 +124,7 @@ Request:
 {: .example-box-title}
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/info/variable/Count_Farm?key=AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'
+'https://api.datacommons.org/v1/info/variable/Count_Farm?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
  

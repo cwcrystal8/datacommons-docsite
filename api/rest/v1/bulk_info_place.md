@@ -135,7 +135,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \ 
-'https://api.datacommons.org/v1/bulk/info/place?entities=geoId/06&entities=geoId/06&key=AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'
+'https://api.datacommons.org/v1/bulk/info/place?entities=geoId/06&entities=geoId/06&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
  
@@ -149,7 +149,7 @@ Request:
 ```bash
 $ curl --request POST \
 --url https://api.datacommons.org/v1/bulk/info/place \
---header 'X-API-Key: AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo' \
+--header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
 --data '{"entities":["geoId/06", "geoId/02"]}'
 ```
 {: .example-box-content .scroll}
