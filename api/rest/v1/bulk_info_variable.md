@@ -36,15 +36,17 @@ This API returns basic information on multiple variables, given each of their [D
   <button id="post-button" class="api-tablink" onclick="openTab(event, 'POST-request')">POST Request</button>
 </div> 
 
-```
-https://api.datacommons.org/v1/bulk/info/variable?entities={variable_dcid_1}&entities={variable_dcid_2}
-```
-{: #GET-request .api-tabcontent .api-signature .scroll}
+<div id="GET-request" class="api-tabcontent api-signature"><div class="scroll">
+https://api.datacommons.org/v1/bulk/info/variable?entities={variable_dcid_1}&entities={variable_dcid_2}&key={your_api_key}
+</div></div>
 
 
-```
+<div id="POST-request" class="api-tabcontent api-signature"><div class="scroll">
 URL:
 https://api.datacommons.org/v1/bulk/info/variable
+
+Header:
+X-API-Key: {your_api_key}
 
 JSON Data:
 {
@@ -54,9 +56,7 @@ JSON Data:
     ...
   ]
 }
-```
-{: #POST-request .api-tabcontent .api-signature .scroll}
-
+</div></div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
 <script src="/assets/js/api-doc-tabs.js"></script>
@@ -70,7 +70,8 @@ This endpoint has no path parameters.
 
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
-| entities <br /> <optional-tag>Required</optional-tag> | string | [DCIDs](/api/rest/v1/getting_started#dcid) of the variables to query information for. |
+| key <br /> <required-tag>Required</required-tag> | string | Your API Key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
+| entities <br /> <required-tag>Required</required-tag> | string | [DCIDs](/api/rest/v1/getting_started#dcid) of the variables to query information for. |
 {: .doc-table }
 
 ## Response
@@ -183,7 +184,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \ 
-'https://api.datacommons.org/v1/bulk/info/variable?entities=Count_Farm&entities=Count_Teacher'
+'https://api.datacommons.org/v1/bulk/info/variable?entities=Count_Farm&entities=Count_Teacher&key=AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'
 ```
 {: .example-box-content .scroll}
  
@@ -198,7 +199,7 @@ Request:
 ```bash
 $ curl --request POST \
 --url https://api.datacommons.org/v1/bulk/info/variable \
---header 'content-type: application/json' \
+--header 'X-API-Key: AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo' \
 --data '{"entities":["Count_Farm", "Count_Teacher"]}'
 ```
 {: .example-box-content .scroll}

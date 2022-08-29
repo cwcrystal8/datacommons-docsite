@@ -42,7 +42,7 @@ http://api.datacommons.org/v1/end/point/{param1}/{param2}?key={api_key}
 
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
-| key <br /> <required-tag>Required</required-tag>   | string | Your API Key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
+| key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
 | query <br /> <optional-tag>Optional</optional-tag> | type | description of query here |
 {: .doc-table }
 

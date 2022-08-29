@@ -3,11 +3,12 @@ layout: default
 title: Rest API Bulk Page Template
 parent: v1 REST
 grand_parent: API
+nav_exclude: true
 published: false
-permalink: /api/rest/v1/bulk/end/point
+permalink: /api/rest/v1/bulk/properties
 ---
 
-# /v1/bulk/end/point
+# /v1/bulk/properties
 
 One line summary of what it does.
 
@@ -15,7 +16,9 @@ Longer details if necessary can go in a short paragraph here. This is where to d
 
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
-    To do some other related, but different thing, see [/v1/other/end/point](https://docs.datacommons.org)
+    To the values of properties, see [/v1/bulk/property/values](/api/rest/v1/bulk/property/values).<br />
+    To find connected edges and nodes, see [/v1/bulk/triples](/api/rest/v1/bulk/triples).<br />
+    For querying a single entity with simpler output, see the [simple version](/api/rest/v1/properties) of this endpoint.
 </div>
  
 
@@ -27,24 +30,19 @@ Longer details if necessary can go in a short paragraph here. This is where to d
 </div> 
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v1/bulk/end/point?query={value}&query={value}&key={your_api_key}
+https://api.datacommons.org/v1/properties/{EDGE_DIRECTION}?entities={entity_dcid_1}&entities={entity_dcid_2}&key={your_api_key}
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
 URL:
-https://api.datacommons.org/v1/bulk/end/point
+https://api.datacommons.org/v1/properties/{EDGE_DIRECTION}
 
 Header:
 X-API-Key: {your_api_key}
 
 JSON Data:
 {
-  "parameter_1": [
-    "{value_1}",
-    "{value_2}",
-    ...
-  ],
-  "parameter_2": [
+  "entities": [
     "{value_1}",
     "{value_2}",
     ...
@@ -55,16 +53,11 @@ JSON Data:
 <script src="/assets/js/syntax_highlighting.js"></script>
 <script src="/assets/js/api-doc-tabs.js"></script>
 
-
-
- 
-
 ### Path Parameters
 
 | Name                                                | Description                   |
 | --------------------------------------------------- | ----------------------------- |
-| param1 <br /> <required-tag>Required</required-tag> | description of parameter here |
-| param2 <br /> <required-tag>Required</required-tag> | description of parameter here |
+| EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | description of parameter here |
 {: .doc-table }
 
 ### Query Parameters

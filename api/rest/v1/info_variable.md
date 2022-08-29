@@ -34,7 +34,7 @@ GET Request
 {: .api-header}
 
 <div class="api-signature">
-https://api.datacommons.org/v1/info/variable/{VARIABLE_DCID}
+https://api.datacommons.org/v1/info/variable/{VARIABLE_DCID}?key={your_api_key}
 </div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
@@ -49,7 +49,10 @@ https://api.datacommons.org/v1/info/variable/{VARIABLE_DCID}
  
 ### Query Parameters
  
-There are no query parameters for this endpoint.
+| Name                                               | Type | Description               |
+| -------------------------------------------------- | ---- | ------------------------- |
+| key <br /> <required-tag>Required</required-tag> | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
+{: .doc-table }
  
 ## Response
  
@@ -121,7 +124,7 @@ Request:
 {: .example-box-title}
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/info/variable/Count_Farm'
+'https://api.datacommons.org/v1/info/variable/Count_Farm?key=AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'
 ```
 {: .example-box-content .scroll}
  
