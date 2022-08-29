@@ -16,7 +16,8 @@ More specifically, this endpoint returns the labels of the edges connected to a 
 
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
-    To find all possible values of a specific property, see [/v1/property/values](/api/rest/v1/property/values)
+    To find all possible values of a specific property, see [/v1/property/values](/api/rest/v1/property/values)<br />
+    To find
 </div>
 
 ## Request
@@ -68,9 +69,36 @@ The response looks like:
 
 ## Examples
 
-### Example 1: Description of what we're trying to show
+### Example 1: Get properties of an entity
 
 One sentence explanation of details of the example.
+
+Request:
+{: .example-box-title}
+```bash
+  $ curl --request GET --url \
+  'https://api.datacommons.org/v1/properties/'
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+```json
+{
+  "date": "2020",
+  "value": 331449281,
+  "facet": {
+    "importName": "USDecennialCensus_RedistrictingRelease",
+    "provenanceUrl": "https://www.census.gov/programs-surveys/decennial-census/about/rdo/summary-files.html",
+    "measurementMethod": "USDecennialCensus"
+  }
+}
+```
+{: .example-box-content .scroll}
+
+### Example 2: 
+
+Find all properties that have 
 
 Request:
 {: .example-box-title}
