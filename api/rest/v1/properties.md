@@ -10,13 +10,13 @@ permalink: /api/rest/v1/properties
 
 # /v1/properties
 
-Get all [properties](/glossary.html#property) available for a specific entity.
+Get all [properties](/glossary.html#property) associated with a specific entity.
 
-More specifically, this endpoint returns the labels of the edges connected to a specific entity node.
+More specifically, this endpoint returns the labels of the edges connected to a specific node in the Data Commons Knowledge Graph. Edges in the graph are directed, so properties can either be labels for edges _towards_ or _away_ from the node. Outgoing edges correspond to properties of the node. Incoming edges denote that the node is the value of this property for some other node.
 
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
-    To find the values of a specific property, see [/v1/property/values](/api/rest/v1/property/values)
+    To find all possible values of a specific property, see [/v1/property/values](/api/rest/v1/property/values)
 </div>
 
 ## Request
@@ -25,7 +25,7 @@ GET Request
 {: .api-header}
 
 <div class="api-signature">
-http://api.datacommons.org/v1/properties/[in|out]/{ENTITY_DCID}
+http://api.datacommons.org/v1/properties/{EDGE_DIRECTION}/{ENTITY_DCID}
 </div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
@@ -34,7 +34,7 @@ http://api.datacommons.org/v1/properties/[in|out]/{ENTITY_DCID}
 
 | Name                                                | Description                   |
 | --------------------------------------------------- | ----------------------------- |
-| [in | out] <br /> <required-tag>Required</required-tag> | One of `in` or `out`. If `in`, returns the labels for edges going into the queried entity node. If `out`, returns the labels for edges going away from the queried entity node. |
+| EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | One of `in` or `out`. <br /><br />If `in`, returns properties for which the queried entity is a value. If `out`, returns properties that describe the queried entity. |
 | ENTITY_DCID <br /> <required-tag>Required</required-tag> | [DCID](/glossary.html#dcid) of the entity to query. |
 {: .doc-table }
 
@@ -48,9 +48,12 @@ The response looks like:
 
 ```json
 {
-  "value": 1234,
-  "date": "YYYY-MM-DD",
-  "Metadata": {}
+  "entity": "Entity DCID",
+  "properties": [
+    "property_name_1",
+    "property_name_2",
+    ...
+  ]
 }
 ```
 {: .response-signature .scroll}
@@ -59,7 +62,8 @@ The response looks like:
 
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
-| field    | type   | description of output here |
+| entity   | string   | [DCID](/glossary.html#dcid) of the entity queried. |
+| properties | list | List of properties connected to the entity queried, for the direction specified in the request. |
 {: .doc-table}
 
 ## Examples
@@ -72,7 +76,7 @@ Request:
 {: .example-box-title}
 ```bash
   $ curl --request GET --url \
-  'https://api.datacommons.org/v1/end/point/param1/param2?query=value'
+  'https://api.datacommons.org/v1/properties/'
 ```
 {: .example-box-content .scroll}
 
