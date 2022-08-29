@@ -526,7 +526,7 @@ JSON Data:
 <p>Get latest count of men (DCID: <code class="language-plaintext highlighter-rouge">Count_Person_Male</code> ) and count of women (DCID: <code class="language-plaintext highlighter-rouge">Count_Person_Female</code> ) for both California (DCID: <code class="language-plaintext highlighter-rouge">geoId/06</code> ) and Texas (DCID: <code class="language-plaintext highlighter-rouge">geoId/48</code> ) in 2019.</p>
 
 <div>
-<ul class="tab" data-tab="184a48e5-cb7b-4fbc-897f-233c7b2b791e">
+<ul class="tab" data-tab="560adb3d-b9c6-4946-9db8-33576eda5de7">
     
         <li class="active">
             <a href="">GET Request </a>
@@ -537,13 +537,13 @@ JSON Data:
         </li>
     
     </ul>
-    <ul class="tab-content" id="184a48e5-cb7b-4fbc-897f-233c7b2b791e">
+    <ul class="tab-content" id="560adb3d-b9c6-4946-9db8-33576eda5de7">
     
         <li class="active">
 <p class="example-box-title">Request:</p>
 
 <div class="language-bash example-box-content scroll highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">--request</span> GET <span class="nt">--url</span> <span class="se">\</span>
-<span class="s1">'https://api.datacommons.org/v1/bulk/observations/point?entities=geoId/06&amp;entities=geoId/48&amp;variables=Count_Person_Male&amp;variables=Count_Person_Female&amp;date=2019&amp;key=AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'</span>
+<span class="s1">'https://api.datacommons.org/v1/bulk/observations/point?entities=geoId/06&amp;entities=geoId/48&amp;variables=Count_Person_Male&amp;variables=Count_Person_Female&amp;date=2019&amp;key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'</span>
 </code></pre></div></div>
 
 </li>
@@ -553,7 +553,7 @@ JSON Data:
 
 <div class="language-bash example-box-content scroll highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">--request</span> POST <span class="se">\</span>
 <span class="nt">--url</span> https://api.datacommons.org/v1/bulk/observations/point <span class="se">\</span>
-<span class="nt">--header</span> <span class="s1">'X-API-Key: AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'</span> <span class="se">\</span>
 <span class="nt">--data</span> <span class="s1">'{"entities":["geoId/06", "geoId/48"], "variables":["Count_Person_Male", "Count_Person_Female"], "date":"2019"}'</span>
 </code></pre></div></div>
 
@@ -635,7 +635,7 @@ JSON Data:
 <p class="example-box-title">Request:</p>
 
 <div class="language-bash example-box-content scroll highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">--request</span> GET <span class="nt">--url</span> <span class="se">\</span>
-<span class="s1">'https://api.datacommons.org/v1/bulk/observations/point?entities=geoId/06&amp;entities=geoId/48&amp;variables=Count_Person_Male&amp;variables=Count_Person_Female&amp;all_facets=true&amp;key=AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'</span>
+<span class="s1">'https://api.datacommons.org/v1/bulk/observations/point?entities=geoId/06&amp;entities=geoId/48&amp;variables=Count_Person_Male&amp;variables=Count_Person_Female&amp;all_facets=true&amp;key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'</span>
 </code></pre></div></div>
 
 <p class="example-box-title">Response:</p>

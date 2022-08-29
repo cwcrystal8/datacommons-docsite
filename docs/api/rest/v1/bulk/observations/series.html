@@ -565,7 +565,7 @@ JSON Data:
 <p>Get total annual electric power consumption (DCID: <code class="language-plaintext highlighter-rouge">Annual_Consumption_Coal_ElectricPower</code> ) and water withdrawal rates (DCID: <code class="language-plaintext highlighter-rouge">WithdrawalRate_Water</code> ) for both Virginia (DCID: <code class="language-plaintext highlighter-rouge">geoId/51</code> ) and Texas (DCID: <code class="language-plaintext highlighter-rouge">geoId/48</code> )</p>
 
 <div>
-<ul class="tab" data-tab="b8032253-1584-42dd-abc2-dc4f8a4b9ca6">
+<ul class="tab" data-tab="fbab269e-fa3d-4ee0-ab1e-27001a18683c">
     
         <li class="active">
             <a href="">GET Request </a>
@@ -576,13 +576,13 @@ JSON Data:
         </li>
     
     </ul>
-    <ul class="tab-content" id="b8032253-1584-42dd-abc2-dc4f8a4b9ca6">
+    <ul class="tab-content" id="fbab269e-fa3d-4ee0-ab1e-27001a18683c">
     
         <li class="active">
 <p class="example-box-title">Request:</p>
 
 <div class="language-bash example-box-content scroll highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">--request</span> GET <span class="nt">--url</span> <span class="se">\</span>
-<span class="s1">'https://api.datacommons.org/v1/bulk/observations/series?entities=geoId/51&amp;entities=geoId/48&amp;variables=Annual_Consumption_Coal_ElectricPower&amp;variables=WithdrawalRate_Water&amp;key=AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'</span>
+<span class="s1">'https://api.datacommons.org/v1/bulk/observations/series?entities=geoId/51&amp;entities=geoId/48&amp;variables=Annual_Consumption_Coal_ElectricPower&amp;variables=WithdrawalRate_Water&amp;key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'</span>
 </code></pre></div></div>
 
 </li>
@@ -592,7 +592,7 @@ JSON Data:
 
 <div class="language-bash example-box-content scroll highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">--request</span> POST <span class="se">\</span>
 <span class="nt">--url</span> https://api.datacommons.org/v1/bulk/observations/series <span class="se">\</span>
-<span class="nt">--header</span> <span class="s1">'X-API-Key: AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'</span> <span class="se">\</span>
 <span class="nt">--data</span> <span class="s1">'{"entities":["geoId/51", "geoId/48"], "variables":["Annual_Consumption_Coal_ElectricPower", "WithdrawalRate_Water"]}'</span>
 </code></pre></div></div>
 
