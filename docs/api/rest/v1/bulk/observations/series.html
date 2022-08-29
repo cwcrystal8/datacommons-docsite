@@ -399,7 +399,7 @@ URL:
 https://api.datacommons.org/v1/bulk/observations/series
 
 Header:
-key: {your_api_key}
+X-API-Key: {your_api_key}
 
 JSON Data:
 {
@@ -565,7 +565,7 @@ JSON Data:
 <p>Get total annual electric power consumption (DCID: <code class="language-plaintext highlighter-rouge">Annual_Consumption_Coal_ElectricPower</code> ) and water withdrawal rates (DCID: <code class="language-plaintext highlighter-rouge">WithdrawalRate_Water</code> ) for both Virginia (DCID: <code class="language-plaintext highlighter-rouge">geoId/51</code> ) and Texas (DCID: <code class="language-plaintext highlighter-rouge">geoId/48</code> )</p>
 
 <div>
-<ul class="tab" data-tab="ef9a784a-2beb-4f43-a6e1-7ca1ae73955c">
+<ul class="tab" data-tab="bf53d71d-e4cc-4b41-a45c-cab392bc2108">
     
         <li class="active">
             <a href="">GET Request </a>
@@ -576,7 +576,7 @@ JSON Data:
         </li>
     
     </ul>
-    <ul class="tab-content" id="ef9a784a-2beb-4f43-a6e1-7ca1ae73955c">
+    <ul class="tab-content" id="bf53d71d-e4cc-4b41-a45c-cab392bc2108">
     
         <li class="active">
 <p class="example-box-title">Request:</p>
@@ -592,7 +592,7 @@ JSON Data:
 
 <div class="language-bash example-box-content scroll highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">--request</span> POST <span class="se">\</span>
 <span class="nt">--url</span> https://api.datacommons.org/v1/bulk/observations/series <span class="se">\</span>
-<span class="nt">--header</span> <span class="s1">'key: AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'X-API-Key: AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'</span> <span class="se">\</span>
 <span class="nt">--data</span> <span class="s1">'{"entities":["geoId/51", "geoId/48"], "variables":["Annual_Consumption_Coal_ElectricPower", "WithdrawalRate_Water"]}'</span>
 </code></pre></div></div>
 

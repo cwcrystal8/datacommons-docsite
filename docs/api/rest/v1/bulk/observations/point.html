@@ -399,7 +399,7 @@ URL:
 https://api.datacommons.org/v1/bulk/observations/point
 
 Header:
-key: {your_api_key}
+X-API-Key: {your_api_key}
 
 JSON Data:
 {
@@ -526,7 +526,7 @@ JSON Data:
 <p>Get latest count of men (DCID: <code class="language-plaintext highlighter-rouge">Count_Person_Male</code> ) and count of women (DCID: <code class="language-plaintext highlighter-rouge">Count_Person_Female</code> ) for both California (DCID: <code class="language-plaintext highlighter-rouge">geoId/06</code> ) and Texas (DCID: <code class="language-plaintext highlighter-rouge">geoId/48</code> ) in 2019.</p>
 
 <div>
-<ul class="tab" data-tab="e63156e0-f829-423b-b1b2-a516acac44dc">
+<ul class="tab" data-tab="f34bccac-10f6-4fe9-9ea7-f2ae6d3c74c5">
     
         <li class="active">
             <a href="">GET Request </a>
@@ -537,7 +537,7 @@ JSON Data:
         </li>
     
     </ul>
-    <ul class="tab-content" id="e63156e0-f829-423b-b1b2-a516acac44dc">
+    <ul class="tab-content" id="f34bccac-10f6-4fe9-9ea7-f2ae6d3c74c5">
     
         <li class="active">
 <p class="example-box-title">Request:</p>
@@ -553,7 +553,7 @@ JSON Data:
 
 <div class="language-bash example-box-content scroll highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">--request</span> POST <span class="se">\</span>
 <span class="nt">--url</span> https://api.datacommons.org/v1/bulk/observations/point <span class="se">\</span>
-<span class="nt">--header</span> <span class="s1">'key: AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'X-API-Key: AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'</span> <span class="se">\</span>
 <span class="nt">--data</span> <span class="s1">'{"entities":["geoId/06", "geoId/48"], "variables":["Count_Person_Male", "Count_Person_Female"], "date":"2019"}'</span>
 </code></pre></div></div>
 
