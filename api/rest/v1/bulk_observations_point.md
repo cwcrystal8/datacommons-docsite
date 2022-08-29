@@ -151,7 +151,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/bulk/observations/point?entities=geoId/06&entities=geoId/48&variables=Count_Person_Male&variables=Count_Person_Female&date=2019&key=AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'
+'https://api.datacommons.org/v1/bulk/observations/point?entities=geoId/06&entities=geoId/48&variables=Count_Person_Male&variables=Count_Person_Female&date=2019&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
  
@@ -166,7 +166,7 @@ Request:
 ```bash
 $ curl --request POST \
 --url https://api.datacommons.org/v1/bulk/observations/point \
---header 'X-API-Key: AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo' \
+--header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
 --data '{"entities":["geoId/06", "geoId/48"], "variables":["Count_Person_Male", "Count_Person_Female"], "date":"2019"}'
 ```
 {: .example-box-content .scroll}
@@ -255,7 +255,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/bulk/observations/point?entities=geoId/06&entities=geoId/48&variables=Count_Person_Male&variables=Count_Person_Female&all_facets=true&key=AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'
+'https://api.datacommons.org/v1/bulk/observations/point?entities=geoId/06&entities=geoId/48&variables=Count_Person_Male&variables=Count_Person_Female&all_facets=true&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
  

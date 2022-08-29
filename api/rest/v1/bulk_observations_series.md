@@ -177,7 +177,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/bulk/observations/series?entities=geoId/51&entities=geoId/48&variables=Annual_Consumption_Coal_ElectricPower&variables=WithdrawalRate_Water&key=AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'
+'https://api.datacommons.org/v1/bulk/observations/series?entities=geoId/51&entities=geoId/48&variables=Annual_Consumption_Coal_ElectricPower&variables=WithdrawalRate_Water&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
  
@@ -192,7 +192,7 @@ Request:
 ```bash
 $ curl --request POST \
 --url https://api.datacommons.org/v1/bulk/observations/series \
---header 'X-API-Key: AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo' \
+--header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
 --data '{"entities":["geoId/51", "geoId/48"], "variables":["Annual_Consumption_Coal_ElectricPower", "WithdrawalRate_Water"]}'
 ```
 {: .example-box-content .scroll}
