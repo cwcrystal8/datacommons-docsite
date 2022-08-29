@@ -127,7 +127,7 @@ For POST requests, pass the key as a header. For example, in cURL, this looks li
 ```bash
 curl -X POST \
 --url https://api.datacommons.org/v1/bulk/end/point \
---header 'key: <YOUR_KEY_HERE>' \
+--header 'X-API-Key: <YOUR_KEY_HERE>' \
 --data '{
   "entities": [
     "entity_dcid_1",
@@ -151,7 +151,7 @@ We've provided a trial API key for general public use.  This key will let you tr
    `AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo`
 </div>
 
-<b>The trial key is capped with a limited quota for requests.</b> If you are planning on using our APIs more rigorously(e.g. for personal or school projects, developing applications, etc.) please email us at [support@datacommons.org](mailto:support@datacommons.org?subject=API Key Request) with "API Key Request" in the subject to request an official key without any quota limits. We'll be happy to hear from you!
+<b>The trial key is capped with a limited quota for requests.</b> If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please email us at [support@datacommons.org](mailto:support@datacommons.org?subject=API Key Request) with "API Key Request" in the subject to request an official key without any quota limits. We'll be happy to hear from you!
 
 
 ## Troubleshooting
