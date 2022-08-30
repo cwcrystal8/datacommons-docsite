@@ -44,9 +44,9 @@ Methods for exploring the graph around a set of nodes.
  
 | API | URI | Description |
 | --- | --- | ------------|
-| Info on a Place |[/v1/info/place](/api/rest/v1/info/place) | Get basic information about a specific entity that is a place |
-| Info on a Variable | [/v1/info/variable](/api/rest/v1/info/variable) | Get information about a specific variable |
-| Properties | [/v1/properties](/api/rest/v1/properties) | Get all properties (labels of directed edges) available for a specific entity |
+| Info on a Place |/v1/info/place | Get basic information about a specific entity that is a place |
+| Info on a Variable | /v1/info/variable | Get information about a specific variable |
+| Properties | /v1/properties | Get all properties (labels of directed edges) available for a specific entity |
 | Triples | /v1/triples | Get neighboring nodes and property labels of directed edges of a specific entity
 | Variables | /v1/variables | Get all variables associated with a specific entity |
 {: .main}
@@ -75,11 +75,11 @@ Bulk versions of above APIs, designed for handling multiple queries at a time, w
  
 | API | URI | Description |
 | --- | --- | ------------|
-| Info on Places | [/v1/bulk/info/place](/api/rest/v1/bulk/info/place) | Get information about multiple entities that are places |
-| Info on Variables | [/v1/bulk/info/variables](/api/rest/v1/bulk/info/variables) | Get information about multiple variables |
+| Info on Places | /v1/bulk/info/place | Get information about multiple entities that are places |
+| Info on Variables | /v1/bulk/info/variables | Get information about multiple variables |
 | Observations (single values)| [/v1/bulk/observations/point](/api/rest/v1/bulk/observations/point) | Get a single value from a time-series variables for multiple entities
 | Observations (series) | [/v1/bulk/observations/series](/api/rest/v1/bulk/observations/series) | Get all values from variables for multiple entities |
-| Properties | [/v1/bulk/properties](api/rest/v1/bulk/properties) | Get all properties for multiple entities. |
+| Properties | /v1/bulk/properties | Get all properties for multiple entities. |
 | Property values | /v1/bulk/property/values | Get property values for multiple properties and multiple entities |
 | Triples | /v1/bulk/triples | Get neighboring nodes and edge labels for multiple entities |
 | Variables | /v1/bulk/variables | Get all variables available for multiple entities |
