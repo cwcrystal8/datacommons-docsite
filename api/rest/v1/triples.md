@@ -1,22 +1,20 @@
 ---
 layout: default
-title: Property Values
-nav_order: 6
+title: Triples
+nav_order: 7
 parent: v1 REST
 grand_parent: API
 published: false
-permalink: /api/rest/v1/property/value
+permalink: /api/rest/v1/triples
 ---
 
-# /v1/property/value
+# /v1/end/point
 
-Get the value of a [property](/glossary.html#property) for a specific entity.
+Get a [triple](/glossary.html#triple).
 
-Note that Data Commons represents properties as labels of directed edges between nodes, which are the values of the property. 
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
-    To get a list of properties available for an entity, see [/v1/properties](/api/rest/v1/properties).<br />
-    To query multiple entites or properties, see the [bulk version](/api/rest/v1/bulk/properties) of this endpoint.
+    To query triples for multiple entities, see the [bulk version](/api/rest/v1/bulk/triples) of this endpoint.
 </div>
 
 ## Request
@@ -25,7 +23,7 @@ GET Request
 {: .api-header}
 
 <div class="api-signature">
-http://api.datacommons.org/v1/property/value/{EDGE_DIRECTION}/{ENTITY}/{PROPERTY}?key={your_api_key}
+http://api.datacommons.org/v1/triples/{param1}/{param2}?key={api_key}
 </div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
@@ -34,9 +32,8 @@ http://api.datacommons.org/v1/property/value/{EDGE_DIRECTION}/{ENTITY}/{PROPERTY
 
 | Name                                                | Description                   |
 | --------------------------------------------------- | ----------------------------- |
-| EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | One of `in` or `out`. <br /><br />If `in`, returns properties for which the queried entity is a value. If `out`, returns values of properties describing the entity queried. |
-| ENTITY <br /> <required-tag>Required</required-tag> | description of parameter here |
-| PROPERTY <br /> <required-tag>Required</required-tag> | description of parameter here |
+| param1 <br /> <required-tag>Required</required-tag> | description of parameter here |
+| param2 <br /> <required-tag>Required</required-tag> | description of parameter here |
 {: .doc-table }
 
 ### Query Parameters
