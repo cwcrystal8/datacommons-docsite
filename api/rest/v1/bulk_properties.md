@@ -30,12 +30,12 @@ More specifically, this endpoint returns the labels of the edges connected to a 
 </div> 
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v1/properties/{EDGE_DIRECTION}?entities={entity_dcid_1}&entities={entity_dcid_2}&key={your_api_key}
+https://api.datacommons.org/v1/bulk/properties/{EDGE_DIRECTION}?entities={entity_dcid_1}&entities={entity_dcid_2}&key={your_api_key}
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
 URL:
-https://api.datacommons.org/v1/properties/{EDGE_DIRECTION}
+https://api.datacommons.org/v1/bulk/properties/{EDGE_DIRECTION}
 
 Header:
 X-API-Key: {your_api_key}
@@ -65,7 +65,7 @@ JSON Data:
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
 | key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| entities <br /> <optional-tag>Optional</optional-tag> | type | description of query here |
+| entities <br /> <required-tag>Required</required-tag> | string | [DCIDs](/glossary.html#dcid) of the entities to query. |
 {: .doc-table }
  
  
@@ -75,33 +75,30 @@ JSON Data:
  
 The response looks like:
  
-
 ```json
 {
-  "observationsByVariable": [
+  "data":
+  [
     {
-      "variable": "variable1_DCID",
-      "observationsByEntity": [
-        {
-          "entity": "entity1_DCID",
-          "pointsByFacet": [
-            {
-              "date": "YYYY",
-              "value": 1234,
-              "facet": 1234567890
-            }, ...
-          ]
-        },
+      "entity": "entity_1_dcid",
+      "properties":
+      [
+        "property_1",
+        "property_2",
+        ...
       ]
-    }
-  ],
-  "facets": {
-    "1234567890": {
-      "importName": "Import_name_string",
-      "provenanceUrl": "https://provenance.url",
-      "measurementMethod": "MeasurementMethod"
-    } ...     
-  }
+    },
+    {
+      "entity": "entity_2_dcid",
+      "properties":
+      [
+        "property_1",
+        "property_2",
+        ...
+      ]
+      
+    }, ...
+  ]
 }
 ```
 {: .response-signature .scroll}
@@ -111,7 +108,8 @@ The response looks like:
 
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
-| field    | type   | description of output here |
+| entity   | string   | [DCID](/glossary.html#dcid) of the entity queried. |
+| properties | list | List of properties connected to the entity queried, for the direction specified in the request. |
 {: .doc-table}
  
 
@@ -119,9 +117,9 @@ The response looks like:
 
  
 
-### Example 1: Description of what we're trying to show
+### Example 1: Get properties describing multiple entities.
 
-One sentence explanation of details of the example.
+Get properties describing the US states of Virgina (DCID: `geoId/51`), Maryland (DCID: `geoId/24`), and Delaware (DCID: `geoId/10`).
 
 <div>
 {% tabs example1 %}
@@ -133,7 +131,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/bulk/end/point?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
+'https://api.datacommons.org/v1/bulk/properties/out?entities=geoId/51&entities=geoId/24&entities=geoId/10&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
  
@@ -148,8 +146,8 @@ Request:
 ```bash
 $ curl --request POST \
 --url https://api.datacommons.org/v1/bulk/end/point \
---header 'key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
---data '{"entities":["geoId/06", "geoId/48"], "variables":["Count_Person_Male", "Count_Person_Female"], "date":"2019"}'
+--header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
+--data '{"entities":["geoId/51", "geoId/24", "geoId/10"]}'
 ```
 {: .example-box-content .scroll}
  
@@ -163,65 +161,173 @@ Response:
 
 ```json
 {
-  "observationsByVariable": [
+  "data":
+  [
     {
-      "variable": "Count_Person_Male",
-      "observationsByEntity": [
-        {
-          "entity": "geoId/06",
-          "pointsByFacet": [
-            {
-              "date": "2019",
-              "value": 19526298,
-              "facet": 1145703171
-            }
-          ]
-        },
-        {
-          "entity": "geoId/48",
-          "pointsByFacet": [
-            {
-              "date": "2019",
-              "value": 14034009,
-              "facet": 1145703171
-            }
-          ]
-        }
+      "entity": "geoId/51",
+      "properties":
+      [
+        "administrativeCapital",
+        "alternateName",
+        "archinformLocationId",
+        "area",
+        "babelnetId",
+        "bbcThingsId",
+        "containedInPlace",
+        "czechNkcrAutId",
+        "encyclopediaBritannicaOnlineId",
+        "encyclopediaLarousseId",
+        "finlandYsoId",
+        "fips104",
+        "fips52AlphaCode",
+        "gacsId",
+        "geoId",
+        "geoJsonCoordinates",
+        "geoJsonCoordinatesDP1",
+        "geoJsonCoordinatesDP2",
+        "geoJsonCoordinatesDP3",
+        "gettyThesaurusOfGeographicNamesId",
+        "gndId",
+        "gnisId",
+        "granEnciclopediaCatalanaId",
+        "greatRussianEncyclopediaOnlineId",
+        "isoCode",
+        "kmlCoordinates",
+        "landArea",
+        "latitude",
+        "libraryOfCongressAuthorityId",
+        "longitude",
+        "musicbrainzAreaId",
+        "name",
+        "nameWithLanguage",
+        "nationalDietLibraryId",
+        "nearbyPlaces",
+        "osmRelationId",
+        "provenance",
+        "quoraTopicId",
+        "ringgoldId",
+        "selibrId",
+        "typeOf",
+        "unitedStatesNationalArchivesIdentifier",
+        "viafId",
+        "waterArea",
+        "whosOnFirstId",
+        "wikidataId",
+        "worldcatIdentitiesId"
       ]
     },
     {
-      "variable": "Count_Person_Female",
-      "observationsByEntity": [
-        {
-          "entity": "geoId/06",
-          "pointsByFacet": [
-            {
-              "date": "2019",
-              "value": 19757199,
-              "facet": 1145703171
-            }
-          ]
-        },
-        {
-          "entity": "geoId/48",
-          "pointsByFacet": [
-            {
-              "date": "2019",
-              "value": 14226847,
-              "facet": 1145703171
-            }
-          ]
-        }
+      "entity": "geoId/24",
+      "properties":
+      [
+        "administrativeCapital",
+        "alternateName",
+        "archinformLocationId",
+        "area",
+        "babelnetId",
+        "bbcThingsId",
+        "containedInPlace",
+        "czechNkcrAutId",
+        "encyclopediaBritannicaOnlineId",
+        "encyclopediaLarousseId",
+        "finlandYsoId",
+        "fips104",
+        "fips52AlphaCode",
+        "franceNationalLibraryId",
+        "gacsId",
+        "geoId",
+        "geoJsonCoordinates",
+        "geoJsonCoordinatesDP1",
+        "geoJsonCoordinatesDP2",
+        "geoJsonCoordinatesDP3",
+        "gettyThesaurusOfGeographicNamesId",
+        "gndId",
+        "gnisId",
+        "granEnciclopediaCatalanaId",
+        "isoCode",
+        "israelNationalLibraryId",
+        "kmlCoordinates",
+        "landArea",
+        "latitude",
+        "libraryOfCongressAuthorityId",
+        "longitude",
+        "musicbrainzAreaId",
+        "name",
+        "nameWithLanguage",
+        "nationalDietLibraryId",
+        "nearbyPlaces",
+        "osmRelationId",
+        "provenance",
+        "quoraTopicId",
+        "ringgoldId",
+        "selibrId",
+        "spainNationalLibraryId",
+        "swedishNationalEncyclopediaId",
+        "typeOf",
+        "unitedStatesNationalArchivesIdentifier",
+        "viafId",
+        "waterArea",
+        "whosOnFirstId",
+        "wikidataId",
+        "worldcatIdentitiesId"
+      ]
+    },
+    {
+      "entity": "geoId/10",
+      "properties":
+      [
+        "administrativeCapital",
+        "alternateName",
+        "archinformLocationId",
+        "area",
+        "babelnetId",
+        "bbcThingsId",
+        "containedInPlace",
+        "czechNkcrAutId",
+        "encyclopediaBritannicaOnlineId",
+        "encyclopediaLarousseId",
+        "finlandYsoId",
+        "fips104",
+        "fips52AlphaCode",
+        "franceIdRefId",
+        "franceNationalLibraryId",
+        "gacsId",
+        "geoId",
+        "geoJsonCoordinates",
+        "geoJsonCoordinatesDP1",
+        "geoJsonCoordinatesDP2",
+        "geoJsonCoordinatesDP3",
+        "gettyThesaurusOfGeographicNamesId",
+        "gndId",
+        "gnisId",
+        "granEnciclopediaCatalanaId",
+        "isoCode",
+        "israelNationalLibraryId",
+        "kmlCoordinates",
+        "landArea",
+        "latitude",
+        "libraryOfCongressAuthorityId",
+        "longitude",
+        "musicbrainzAreaId",
+        "name",
+        "nameWithLanguage",
+        "nearbyPlaces",
+        "osmRelationId",
+        "provenance",
+        "quoraTopicId",
+        "ringgoldId",
+        "selibrId",
+        "swedishNationalEncyclopediaId",
+        "typeOf",
+        "unitedStatesNationalArchivesIdentifier",
+        "viafId",
+        "waterArea",
+        "whosOnFirstId",
+        "wikidataId",
+        "worldcatIdentitiesId"
       ]
     }
-  ],
-  "facets": {
-    "1145703171": {
-      "importName": "CensusACS5YearSurvey",
-      "provenanceUrl": "https://www.census.gov/",
-      "measurementMethod": "CensusACS5yrSurvey"
-    }
-  }
+  ]
 }
 ```
 {: .example-box-content .scroll}

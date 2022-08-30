@@ -75,7 +75,7 @@ The response looks like:
 
 ### Example 1: Get properties describing an entity
 
-Get all properties that describe the city of Chicago, IL, USA (dcid: `geoId/1714000`).
+Get all properties that describe the city of Chicago, IL, USA (DCID: `geoId/1714000`).
 
 Request:
 {: .example-box-title}
@@ -149,7 +149,7 @@ Response:
 
 ### Example 2: Get properties that have the queried entity as a value
 
-Find all properties that have carbon dioxide (dcid: `CarbonDioxide`) as a value.
+Find all properties that have carbon dioxide (DCID: `CarbonDioxide`) as a value.
 
 Request:
 {: .example-box-title}
