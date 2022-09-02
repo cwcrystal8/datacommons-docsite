@@ -10,7 +10,7 @@ permalink: /api/rest/v1/bulk/info/variable
 
 
 
-## /v1/bulk/info/variable
+# /v1/bulk/info/variable
 
 Get basic information about multiple [variables](/api/rest/v1/getting_started#variable).
 

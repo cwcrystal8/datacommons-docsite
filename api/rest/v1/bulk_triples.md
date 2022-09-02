@@ -1,24 +1,22 @@
 ---
 layout: default
-title: Properties
+title: Triples
 parent: v1 REST
 grand_parent: API
 nav_exclude: true
 published: false
-permalink: /api/rest/v1/bulk/properties
+permalink: /api/rest/v1/bulk/triples
 ---
 
-# /v1/bulk/properties
+# /v1/bulk/triples
 
-Get all [properties](/glossary.html#property) associated with a specific entity, for multiple entities.
+Get [triples](/glossary.html#triple) for multiple entities.
 
-More specifically, this endpoint returns the labels of the edges connected to a specific node in the Data Commons Knowledge Graph. Edges in the graph are directed, so properties can either be labels for edges _towards_ or _away_ from the node. Outgoing edges correspond to properties of the node. Incoming edges denote that the node is the value of this property for some other node.
+Useful for finding local connections between nodes of the Data Commons knowledge graph.
 
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
-    To the values of properties, see [/v1/bulk/property/values](/api/rest/v1/bulk/property/values).<br />
-    To find connected edges and nodes, see [/v1/bulk/triples](/api/rest/v1/bulk/triples).<br />
-    For querying a single entity with simpler output, see the [simple version](/api/rest/v1/properties) of this endpoint.
+    For single queries with a simpler output, see the [simple version](/api/rest/v1/triples) of this endpoint.
 </div>
  
 
@@ -34,12 +32,12 @@ More specifically, this endpoint returns the labels of the edges connected to a 
 </div> 
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v1/bulk/properties/{EDGE_DIRECTION}?entities={entity_dcid_1}&entities={entity_dcid_2}&key={your_api_key}
+https://api.datacommons.org/v1/bulk/triples/{EDGE_DIRECTION}?entities={entity_dcid_1}&entities={entity_dcid_2}&key={your_api_key}
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
 URL:
-https://api.datacommons.org/v1/bulk/properties/{EDGE_DIRECTION}
+https://api.datacommons.org/v1/bulk/triples/{EDGE_DIRECTION}
 
 Header:
 X-API-Key: {your_api_key}
@@ -61,7 +59,7 @@ JSON Data:
 
 | Name                                                | Description                   |
 | --------------------------------------------------- | ----------------------------- |
-| EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | One of `in` or `out`. Denotes direction of edges to get triples for. <br /><br />If `in`, returns properties represented by edges pointing _toward_ the entity provided. If `out`, returns properties represented by edges pointing _away_ from the entity provided. |
+| EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | One of `in` or `out`. Denotes direction of edges to get triples for. <br /><br />If `in`, returns triples with edges pointing _toward_ the entity provided. If `out`, returns triples with edges pointing _away_ from the entity provided. |
 {: .doc-table }
 
 ### Query Parameters

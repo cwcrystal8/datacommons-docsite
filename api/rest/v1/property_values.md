@@ -16,7 +16,7 @@ Note that Data Commons represents properties as labels of directed edges between
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
     To get a list of properties available for an entity, see [/v1/properties](/api/rest/v1/properties).<br />
-    To query multiple entites or properties, see the [bulk version](/api/rest/v1/bulk/properties) of this endpoint.
+    To query multiple entites or properties, see the [bulk version](/api/rest/v1/bulk/property/values) of this endpoint.
 </div>
 
 ## Request
