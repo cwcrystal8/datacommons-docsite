@@ -53,13 +53,13 @@ The response looks like:
 {
   "triples":
   {
-    "property_describing_entity_queried":
+    "property_describing_entity_queried_1":
     {
       "entities":
       [
         {
-          "property_of_connected_node": "value",
-          "property_of_connected_node": "value",
+          "property_of_connected_node_1": "value",
+          "property_of_connected_node_2": "value",
           ...
         }, ...
       ]
@@ -174,7 +174,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 2: Get triples of ingoing edges
+### Example 2: Get triples of incoming edges
 
 Get triples for the node representing Carbon Dioxide (DCID: `CarbonDioxide`), where edges point _towards_ the node Carbon Dioxide. 
 

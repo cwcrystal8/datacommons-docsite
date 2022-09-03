@@ -82,23 +82,39 @@ The response looks like:
   "data":
   [
     {
-      "entity": "entity_1_dcid",
-      "properties":
-      [
-        "property_1",
-        "property_2",
-        ...
-      ]
+      "entity": "entity_dcid_1",
+      "triples":
+      {
+        "property_of_entity":
+        {
+          "entities":
+          [
+            {
+              "property_of_connected_node_1": "value",
+              "property_of_connected_node_2": "value",
+              ...
+            }, ...
+          ]
+        }, ...
+
+      }
     },
     {
-      "entity": "entity_2_dcid",
-      "properties":
-      [
-        "property_1",
-        "property_2",
-        ...
-      ]
-      
+      "entity": "entity_dcid_2",
+      "triples":
+      {
+        "property_of_entity":
+        {
+          "entities":
+          [
+            {
+              "property_of_connected_node_1": "value",
+              "property_of_connected_node_2": "value",
+              ...
+            }, ...
+          ]
+        }, ...
+      }
     }, ...
   ]
 }
@@ -111,7 +127,7 @@ The response looks like:
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
 | entity   | string   | [DCID](/glossary.html#dcid) of the entity queried. |
-| properties | list | List of properties connected to the entity queried, for the direction specified in the request. |
+| triples    | object   | A nested JSON object containing [DCIDs](/glossary.html#dcid) of both properties that describe the entity queried, and nodes connected to the queried entity via those properties. |
 {: .doc-table}
  
 
@@ -119,9 +135,9 @@ The response looks like:
 
  
 
-### Example 1: Get properties describing multiple entities.
+### Example 1: Get outgoing triples for multiple entities.
 
-Get properties describing the US states of Virgina (DCID: `geoId/51`), Maryland (DCID: `geoId/24`), and Delaware (DCID: `geoId/10`).
+Get triples for the greenhouse gases carbon dioxide (DCID: `CarbonDioxide`) and methane (DCID: `Methane`), for edges going _away_ from those nodes.
 
 <div>
 {% tabs example1 %}
@@ -133,7 +149,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/bulk/properties/out?entities=geoId/51&entities=geoId/24&entities=geoId/10&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
+'https://api.datacommons.org/v1/bulk/triples/out?entities=CarbonDioxide&entities=Methane&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
  
@@ -147,9 +163,9 @@ Request:
 
 ```bash
 $ curl --request POST \
---url https://api.datacommons.org/v1/bulk/properties \
+--url https://api.datacommons.org/v1/bulk/triples/out \
 --header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
---data '{"entities":["geoId/51", "geoId/24", "geoId/10"]}'
+--data '{"entities":["CarbonDioxide", "Methane"]}'
 ```
 {: .example-box-content .scroll}
  
@@ -166,168 +182,153 @@ Response:
   "data":
   [
     {
-      "entity": "geoId/51",
-      "properties":
-      [
-        "administrativeCapital",
-        "alternateName",
-        "archinformLocationId",
-        "area",
-        "babelnetId",
-        "bbcThingsId",
-        "containedInPlace",
-        "czechNkcrAutId",
-        "encyclopediaBritannicaOnlineId",
-        "encyclopediaLarousseId",
-        "finlandYsoId",
-        "fips104",
-        "fips52AlphaCode",
-        "gacsId",
-        "geoId",
-        "geoJsonCoordinates",
-        "geoJsonCoordinatesDP1",
-        "geoJsonCoordinatesDP2",
-        "geoJsonCoordinatesDP3",
-        "gettyThesaurusOfGeographicNamesId",
-        "gndId",
-        "gnisId",
-        "granEnciclopediaCatalanaId",
-        "greatRussianEncyclopediaOnlineId",
-        "isoCode",
-        "kmlCoordinates",
-        "landArea",
-        "latitude",
-        "libraryOfCongressAuthorityId",
-        "longitude",
-        "musicbrainzAreaId",
-        "name",
-        "nameWithLanguage",
-        "nationalDietLibraryId",
-        "nearbyPlaces",
-        "osmRelationId",
-        "provenance",
-        "quoraTopicId",
-        "ringgoldId",
-        "selibrId",
-        "typeOf",
-        "unitedStatesNationalArchivesIdentifier",
-        "viafId",
-        "waterArea",
-        "whosOnFirstId",
-        "wikidataId",
-        "worldcatIdentitiesId"
-      ]
+      "entity": "CarbonDioxide",
+      "triples":
+      {
+        "description":
+        {
+          "entities":
+          [
+            {
+              "provenanceId": "dc/5l5zxr1",
+              "value": "A colorless gas consisting of a carbon atom covalently double bonded to two oxygen atoms."
+            }
+          ]
+        },
+        "descriptionUrl":
+        {
+          "entities":
+          [
+            {
+              "provenanceId": "dc/5l5zxr1",
+              "value": "https://en.wikipedia.org/wiki/Carbon_dioxide"
+            }
+          ]
+        },
+        "name":
+        {
+          "entities":
+          [
+            {
+              "provenanceId": "dc/5l5zxr1",
+              "value": "Carbon Dioxide"
+            },
+            {
+              "provenanceId": "dc/5l5zxr1",
+              "value": "CarbonDioxide"
+            }
+          ]
+        },
+        "provenance":
+        {
+          "entities":
+          [
+            {
+              "name": "https://datacommons.org",
+              "types":
+              [
+                "Provenance"
+              ],
+              "dcid": "dc/5l5zxr1",
+              "provenanceId": "dc/5l5zxr1"
+            }
+          ]
+        },
+        "typeOf":
+        {
+          "entities":
+          [
+            {
+              "name": "GasType",
+              "types":
+              [
+                "Class"
+              ],
+              "dcid": "GasType",
+              "provenanceId": "dc/5l5zxr1"
+            },
+            {
+              "name": "GreenhouseGas",
+              "types":
+              [
+                "Class"
+              ],
+              "dcid": "GreenhouseGas",
+              "provenanceId": "dc/5l5zxr1"
+            }
+          ]
+        }
+      }
     },
     {
-      "entity": "geoId/24",
-      "properties":
-      [
-        "administrativeCapital",
-        "alternateName",
-        "archinformLocationId",
-        "area",
-        "babelnetId",
-        "bbcThingsId",
-        "containedInPlace",
-        "czechNkcrAutId",
-        "encyclopediaBritannicaOnlineId",
-        "encyclopediaLarousseId",
-        "finlandYsoId",
-        "fips104",
-        "fips52AlphaCode",
-        "franceNationalLibraryId",
-        "gacsId",
-        "geoId",
-        "geoJsonCoordinates",
-        "geoJsonCoordinatesDP1",
-        "geoJsonCoordinatesDP2",
-        "geoJsonCoordinatesDP3",
-        "gettyThesaurusOfGeographicNamesId",
-        "gndId",
-        "gnisId",
-        "granEnciclopediaCatalanaId",
-        "isoCode",
-        "israelNationalLibraryId",
-        "kmlCoordinates",
-        "landArea",
-        "latitude",
-        "libraryOfCongressAuthorityId",
-        "longitude",
-        "musicbrainzAreaId",
-        "name",
-        "nameWithLanguage",
-        "nationalDietLibraryId",
-        "nearbyPlaces",
-        "osmRelationId",
-        "provenance",
-        "quoraTopicId",
-        "ringgoldId",
-        "selibrId",
-        "spainNationalLibraryId",
-        "swedishNationalEncyclopediaId",
-        "typeOf",
-        "unitedStatesNationalArchivesIdentifier",
-        "viafId",
-        "waterArea",
-        "whosOnFirstId",
-        "wikidataId",
-        "worldcatIdentitiesId"
-      ]
-    },
-    {
-      "entity": "geoId/10",
-      "properties":
-      [
-        "administrativeCapital",
-        "alternateName",
-        "archinformLocationId",
-        "area",
-        "babelnetId",
-        "bbcThingsId",
-        "containedInPlace",
-        "czechNkcrAutId",
-        "encyclopediaBritannicaOnlineId",
-        "encyclopediaLarousseId",
-        "finlandYsoId",
-        "fips104",
-        "fips52AlphaCode",
-        "franceIdRefId",
-        "franceNationalLibraryId",
-        "gacsId",
-        "geoId",
-        "geoJsonCoordinates",
-        "geoJsonCoordinatesDP1",
-        "geoJsonCoordinatesDP2",
-        "geoJsonCoordinatesDP3",
-        "gettyThesaurusOfGeographicNamesId",
-        "gndId",
-        "gnisId",
-        "granEnciclopediaCatalanaId",
-        "isoCode",
-        "israelNationalLibraryId",
-        "kmlCoordinates",
-        "landArea",
-        "latitude",
-        "libraryOfCongressAuthorityId",
-        "longitude",
-        "musicbrainzAreaId",
-        "name",
-        "nameWithLanguage",
-        "nearbyPlaces",
-        "osmRelationId",
-        "provenance",
-        "quoraTopicId",
-        "ringgoldId",
-        "selibrId",
-        "swedishNationalEncyclopediaId",
-        "typeOf",
-        "unitedStatesNationalArchivesIdentifier",
-        "viafId",
-        "waterArea",
-        "whosOnFirstId",
-        "wikidataId",
-        "worldcatIdentitiesId"
-      ]
+      "entity": "Methane",
+      "triples":
+      {
+        "isProvisional":
+        {
+          "entities":
+          [
+            {
+              "name": "True",
+              "types":
+              [
+                "Boolean"
+              ],
+              "dcid": "True",
+              "provenanceId": "dc/5l5zxr1"
+            }
+          ]
+        },
+        "name":
+        {
+          "entities":
+          [
+            {
+              "provenanceId": "dc/5l5zxr1",
+              "value": "Methane"
+            }
+          ]
+        },
+        "provenance":
+        {
+          "entities":
+          [
+            {
+              "name": "https://datacommons.org",
+              "types":
+              [
+                "Provenance"
+              ],
+              "dcid": "dc/5l5zxr1",
+              "provenanceId": "dc/5l5zxr1"
+            }
+          ]
+        },
+        "typeOf":
+        {
+          "entities":
+          [
+            {
+              "name": "ChemicalCompound",
+              "types":
+              [
+                "Class"
+              ],
+              "dcid": "ChemicalCompound",
+              "provenanceId": "dc/5l5zxr1"
+            },
+            {
+              "name": "GreenhouseGas",
+              "types":
+              [
+                "Class"
+              ],
+              "dcid": "GreenhouseGas",
+              "provenanceId": "dc/5l5zxr1"
+            }
+          ]
+        }
+      }
     }
   ]
 }
@@ -335,3 +336,199 @@ Response:
 {: .example-box-content .scroll}
  
  
+### Example 2: Get incoming triples for multiple entities.
+
+Get triples for the greenhouse gases carbon dioxide (DCID: `CarbonDioxide`) and methane (DCID: `Methane`), for edges going _towards_ those nodes.
+
+<div>
+{% tabs example1 %}
+ 
+{% tab example1 GET Request %}
+ 
+Request:
+{: .example-box-title}
+
+```bash
+$ curl --request GET --url \
+'https://api.datacommons.org/v1/bulk/triples/in?entities=geoId/51&entities=CarbonDioxide&entities=Methane&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
+```
+{: .example-box-content .scroll}
+ 
+{% endtab %}
+ 
+ 
+{% tab example1 POST Request %}
+ 
+Request:
+{: .example-box-title}
+
+```bash
+$ curl --request POST \
+--url https://api.datacommons.org/v1/bulk/triples/in \
+--header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
+--data '{"entities":["CarbonDioxide", "Methane"]}'
+```
+{: .example-box-content .scroll}
+ 
+{% endtab %}
+ 
+{% endtabs %}
+</div>
+ 
+Response:
+{: .example-box-title}
+
+```json
+{
+  "data":
+  [
+    {
+      "entity": "CarbonDioxide",
+      "triples":
+      {
+        "emittedThing":
+        {
+          "entities":
+          [
+            {
+              "name": "CO2 Emissions Per Capita",
+              "types":
+              [
+                "StatisticalVariable"
+              ],
+              "dcid": "Amount_Emissions_CarbonDioxide_PerCapita",
+              "provenanceId": "dc/d7tbsb1"
+            },
+            {
+              "name": "Annual Amount of Emissions: Biogenic Emission Source, Carbon Dioxide",
+              "types":
+              [
+                "StatisticalVariable"
+              ],
+              "dcid": "Annual_Emissions_CarbonDioxide_Biogenic",
+              "provenanceId": "dc/d7tbsb1"
+            },
+            {
+              "name": "Annual Amount of Emissions: Non Biogenic Emission Source, Carbon Dioxide",
+              "types":
+              [
+                "StatisticalVariable"
+              ],
+              "dcid": "Annual_Emissions_CarbonDioxide_NonBiogenic",
+              "provenanceId": "dc/d7tbsb1"
+            },
+            {
+              "types":
+              [
+                "StatisticalVariable"
+              ],
+              "dcid": "dc/pelkj2pkyww1",
+              "provenanceId": "dc/6zzrcr2"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "entity": "Methane",
+      "triples":
+      {
+        "contaminant":
+        {
+          "entities":
+          [
+            {
+              "name": "Whether Atmosphere is contaminated with Methane.",
+              "types":
+              [
+                "StatisticalVariable"
+              ],
+              "dcid": "IsContaminated_Methane_Atmosphere",
+              "provenanceId": "dc/d7tbsb1"
+            },
+            {
+              "name": "Whether EPA_OtherContaminatedThing is contaminated with Methane.",
+              "types":
+              [
+                "StatisticalVariable"
+              ],
+              "dcid": "IsContaminated_Methane_EPAOtherContaminatedThing",
+              "provenanceId": "dc/d7tbsb1"
+            },
+            {
+              "name": "Whether GroundWater is contaminated with Methane.",
+              "types":
+              [
+                "StatisticalVariable"
+              ],
+              "dcid": "IsContaminated_Methane_GroundWater",
+              "provenanceId": "dc/d7tbsb1"
+            },
+            {
+              "name": "Whether LandfillGas is contaminated with Methane.",
+              "types":
+              [
+                "StatisticalVariable"
+              ],
+              "dcid": "IsContaminated_Methane_LandfillGas",
+              "provenanceId": "dc/d7tbsb1"
+            },
+            {
+              "name": "Whether Leachate is contaminated with Methane.",
+              "types":
+              [
+                "StatisticalVariable"
+              ],
+              "dcid": "IsContaminated_Methane_Leachate",
+              "provenanceId": "dc/d7tbsb1"
+            },
+            {
+              "name": "Whether SoilGas is contaminated with Methane.",
+              "types":
+              [
+                "StatisticalVariable"
+              ],
+              "dcid": "IsContaminated_Methane_SoilGas",
+              "provenanceId": "dc/d7tbsb1"
+            },
+            {
+              "name": "Whether Soil is contaminated with Methane.",
+              "types":
+              [
+                "StatisticalVariable"
+              ],
+              "dcid": "IsContaminated_Methane_Soil",
+              "provenanceId": "dc/d7tbsb1"
+            },
+            {
+              "name": "Whether SolidWaste is contaminated with Methane.",
+              "types":
+              [
+                "StatisticalVariable"
+              ],
+              "dcid": "IsContaminated_Methane_SolidWaste",
+              "provenanceId": "dc/d7tbsb1"
+            }
+          ]
+        },
+        "emittedThing":
+        {
+          "entities":
+          [
+            {
+              "name": "Annual Amount of Emissions: Non Biogenic Emission Source, Methane",
+              "types":
+              [
+                "StatisticalVariable"
+              ],
+              "dcid": "Annual_Emissions_Methane_NonBiogenic",
+              "provenanceId": "dc/d7tbsb1"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+```
+{: .example-box-content .scroll}
