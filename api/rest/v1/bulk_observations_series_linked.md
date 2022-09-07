@@ -1,18 +1,19 @@
 ---
 layout: default
 title: Observation (series, linked)
-nav_exclude: true
+nav_order: 4.5
 parent: v1 REST
 grand_parent: API
 published: false
-permalink: /api/rest/v1/bulk/observations/series
+permalink: /api/rest/v1/bulk/observations/series/linked
  
 ---
  
-# /v1/bulk/observations/series
+# /v1/bulk/observations/series/linked
 
-Retrieve a series of observations for multiple variables and entities.
- 
+Retrieve a series of observations for all entities linked by a property.
+
+This
  
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>See Also:</b><br />
@@ -29,24 +30,21 @@ Retrieve a series of observations for multiple variables and entities.
 
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v1/bulk/observations/series?entities={entity_dcid_1}&entities={entity_dcid_2}&variables={variable_dcid_1}&variables={variable_dcid_2}&key={your_api_key}
+https://api.datacommons.org/v1/bulk/observations/series/linked?linked_entity={entity_dcid}&linked_property={property}&variables={variable_dcid_1}&variables={variable_dcid_2}&key={your_api_key}
 </div>
 
 
 <div id="POST-request" class="api-tabcontent api-signature">
 URL:
-https://api.datacommons.org/v1/bulk/observations/series
+https://api.datacommons.org/v1/bulk/observations/series/linked
 
 Header:
 X-API-Key: {your_api_key}
 
 JSON Data:
 {
-  "entities": [
-    "{entity_dcid_1}",
-    "{entity_dcid_2}",
-    ...
-  ],
+  "linked_entity": "entity_dcid",
+  "linked_property": "property_dcid",
   "variables": [
     "{variable_dcid_1}",
     "{variable_dcid_2}",
@@ -70,7 +68,7 @@ There are no path parameters for this endpoint.
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
 | key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| entities <br /><required-tag>Required</required-tag> | Repeated string | [DCIDs](/glossary.html#dcid) of the entities the variables describe. |
+| linked_entity <br /><required-tag>Required</required-tag> | Repeated string | [DCIDs](/glossary.html#dcid) of the entities the variables describe. |
 | variables <br /><required-tag>Required</required-tag> | Repeated string | [DCIDs](/glossary.html#dcid) of the variables to query observations for.
 | all_facets <br /><optional-tag>Optional</optional-tag> | Boolean | Whether to return data from all [facets](/glossary.html#facet) available. If true, data from all facets available will be returned. If false, only data from the [preferred facet](/glossary.html#preferred-facet) will be returned. Defaults to false.
 {: .doc-table }
@@ -206,138 +204,7 @@ Response:
 {: .example-box-title}
 
 ```json
-{
-   "observationsByVariable": [
-       {
-           "variable": "Annual_Consumption_Coal_ElectricPower",
-           "observationsByEntity": [
-               {
-                   "entity": "geoId/48",
-                   "seriesByFacet": [
-                       {
-                           "series": [
-                               {
-                                   "date": "2001",
-                                   "value": 92437807
-                               },
-                               {
-                                   "date": "2002",
-                                   "value": 95672686
-                               },
- 
-                              
-                               <...output truncated for brevity...>
-                               
- 
-                               {
-                                   "date": "2019",
-                                   "value": 63310631
-                               },
-                               {
-                                   "date": "2020",
-                                   "value": 56068974
-                               }
-                           ],
-                           "facet": 3743503335
-                       }
-                   ]
-               },
-               {
-                   "entity": "geoId/51",
-                   "seriesByFacet": [
-                       {
-                           "series": [
-                               {
-                                   "date": "2001",
-                                   "value": 15427618
-                               },
-                               {
-                                   "date": "2002",
-                                   "value": 15416555
-                               },
-                              
-                               <...output truncated for brevity...>
-                               
-                               {
-                                   "date": "2019",
-                                   "value": 1972956
-                               },
-                               {
-                                   "date": "2020",
-                                   "value": 1814436
-                               }
-                           ],
-                           "facet": 3743503335
-                       }
-                   ]
-               }
-           ]
-       },
-       {
-           "variable": "WithdrawalRate_Water",
-           "observationsByEntity": [
-               {
-                   "entity": "geoId/48",
-                   "seriesByFacet": [
-                       {
-                           "series": [
-                               {
-                                   "date": "1985",
-                                   "value": 25185.230000000014
-                               },
-                               {
-                                   "date": "1990",
-                                   "value": 26321.259999999987
-                               },
-                              
-                               <...output truncated for brevity...>
-                               
-                               {
-                                   "date": "2010",
-                                   "value": 33382.35999999998
-                               },
-                               {
-                                   "date": "2015",
-                                   "value": 30029.560000000005
-                               }
-                           ],
-                           "facet": 2157651424
-                       }
-                   ]
-               },
-               {
-                   "entity": "geoId/51",
-                   "seriesByFacet": [
-                       {
-                           "series": [
-                               {
-                                   "date": "1985",
-                                   "value": 2158.1
-                               },
-                               {
-                                   "date": "1990",
-                                   "value": 2367.2300000000005
-                               },
-                              
-                               <...output truncated for brevity...>
-                               
-                               {
-                                   "date": "2010",
-                                   "value": 8800.439999999995
-                               },
-                               {
-                                   "date": "2015",
-                                   "value": 7720.680000000003
-                               }
-                           ],
-                           "facet": 2157651424
-                       }
-                   ]
-               }
-           ]
-       }
-   ]
-}
+{}
 ```
 {: .example-box-content .scroll}
  
