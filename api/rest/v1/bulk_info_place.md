@@ -10,7 +10,7 @@ permalink: /api/rest/v1/bulk/info/place
 
 
 
-## /v1/bulk/info/place
+# /v1/bulk/info/place
 
 Get basic information about multiple [places](/api/rest/v1/getting_started#place).
 

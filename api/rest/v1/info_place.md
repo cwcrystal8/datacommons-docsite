@@ -10,7 +10,7 @@ permalink: /api/rest/v1/info/place
  
  
  
-## /v1/info/place
+# /v1/info/place
  
 Get basic information about a [place](/api/rest/v1/getting_started#place).
  

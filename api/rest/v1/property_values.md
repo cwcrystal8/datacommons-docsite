@@ -5,14 +5,17 @@ nav_order: 6
 parent: v1 REST
 grand_parent: API
 published: false
-permalink: /api/rest/v1/property/value
+permalink: /api/rest/v1/property/values
 ---
 
-# /v1/property/value
+# /v1/property/values
 
-Get the value of a [property](/glossary.html#property) for a specific entity.
+Get the values of a [property](/glossary.html#property) for a specific entity.
 
-Note that Data Commons represents properties as labels of directed edges between nodes, which are the values of the property. 
+Data Commons represents properties as labels of directed edges between nodes, where the successor node is a value of the property. Thus, this endpoint returns nodes connected to the queried entity via the property queried.
+
+_Note: If you want to query values for the property `containedInPlace`, consider using [/v1/property/values/linked](/api/rest/v1/property/values/linked) instead._
+
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
     To get a list of properties available for an entity, see [/v1/properties](/api/rest/v1/properties).<br />
@@ -25,7 +28,7 @@ GET Request
 {: .api-header}
 
 <div class="api-signature">
-http://api.datacommons.org/v1/property/value/{EDGE_DIRECTION}/{ENTITY}/{PROPERTY}?key={your_api_key}
+http://api.datacommons.org/v1/property/values/{EDGE_DIRECTION}/{ENTITY}/{PROPERTY}?key={your_api_key}
 </div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
@@ -34,9 +37,9 @@ http://api.datacommons.org/v1/property/value/{EDGE_DIRECTION}/{ENTITY}/{PROPERTY
 
 | Name                                                | Description                   |
 | --------------------------------------------------- | ----------------------------- |
-| EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | One of `in` or `out`. <br /><br />If `in`, returns properties for which the queried entity is a value. If `out`, returns values of properties describing the entity queried. |
-| ENTITY <br /> <required-tag>Required</required-tag> | description of parameter here |
-| PROPERTY <br /> <required-tag>Required</required-tag> | description of parameter here |
+| EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | One of `in` or `out`. <br /><br />If `in`, returns nodes for which the queried entity is a property value. If `out`, returns values of properties describing the entity queried. |
+| ENTITY <br /> <required-tag>Required</required-tag> | [DCID](/glossary.html#dcid) of the entity to query.|
+| PROPERTY <br /> <required-tag>Required</required-tag> | [DCID](/glossary.html#dcid) of the property to query. |
 {: .doc-table }
 
 ### Query Parameters
@@ -44,7 +47,6 @@ http://api.datacommons.org/v1/property/value/{EDGE_DIRECTION}/{ENTITY}/{PROPERTY
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
 | key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| query <br /> <optional-tag>Optional</optional-tag> | type | description of query here |
 {: .doc-table }
 
 ## Response
@@ -53,9 +55,14 @@ The response looks like:
 
 ```json
 {
-  "value": 1234,
-  "date": "YYYY-MM-DD",
-  "Metadata": {}
+  "values":
+  [
+    {
+      "property_1_of_connected_node": "value",
+      "property_2_of_connected_node": "value",
+      ...
+    }, ...
+  ]
 }
 ```
 {: .response-signature .scroll}
@@ -64,20 +71,20 @@ The response looks like:
 
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
-| field    | type   | description of output here |
+| values    | object   | values of the property queried, for the entity queried. |
 {: .doc-table}
 
 ## Examples
 
-### Example 1: Description of what we're trying to show
+### Example 1: Get the value of a property for an entity
 
-One sentence explanation of details of the example.
+Get the name of the node with DCID `geoId/sch3620580` by querying the property `name`.
 
 Request:
 {: .example-box-title}
 ```bash
   $ curl --request GET --url \
-  'https://api.datacommons.org/v1/end/point/param1/param2?query=value&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
+  'https://api.datacommons.org/v1/property/values/out/geoId/sch3620580/name&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
 
@@ -85,13 +92,73 @@ Response:
 {: .example-box-title}
 ```json
 {
-  "date": "2020",
-  "value": 331449281,
-  "facet": {
-    "importName": "USDecennialCensus_RedistrictingRelease",
-    "provenanceUrl": "https://www.census.gov/programs-surveys/decennial-census/about/rdo/summary-files.html",
-    "measurementMethod": "USDecennialCensus"
-  }
+  "values":
+  [
+    {
+      "provenanceId": "dc/sm3m2w3",
+      "value": "New York City Department Of Education"
+    }
+  ]
+}
+```
+{: .example-box-content .scroll}
+
+### Example 2: Get the nodes that have the queried entity as a property value
+
+Get a list of natural disasters in Madagascar (DCID: `country/MDG`) by querying the property `affectedPlace`.
+
+Request:
+{: .example-box-title}
+```bash
+  $ curl --request GET --url \
+  'https://api.datacommons.org/v1/property/values/in/country/MDG/affectedPlace&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+```json
+{
+  "values":
+  [
+    {
+      "name": "Unnamed SouthIndian Cyclone (1912324S11066)",
+      "types":
+      [
+        "CycloneEvent"
+      ],
+      "dcid": "cyclone/ibtracs_1912324S11066",
+      "provenanceId": "dc/xwq0y5"
+    },
+    {
+      "name": "Unnamed SouthIndian Cyclone (1913022S12053)",
+      "types":
+      [
+        "CycloneEvent"
+      ],
+      "dcid": "cyclone/ibtracs_1913022S12053",
+      "provenanceId": "dc/xwq0y5"
+    },
+    < ... output  truncated for brevity ... >
+    {
+      "name": "32 km SSE of Maroantsetra, Madagascar",
+      "types":
+      [
+        "EarthquakeEvent"
+      ],
+      "dcid": "earthquake/usp000h6zw",
+      "provenanceId": "dc/xz8ndk3"
+    },
+    {
+      "name": "23 km ENE of Amparafaravola, Madagascar",
+      "types":
+      [
+        "EarthquakeEvent"
+      ],
+      "dcid": "earthquake/usp000jgbb",
+      "provenanceId": "dc/xz8ndk3"
+    }
+  ]
 }
 ```
 {: .example-box-content .scroll}

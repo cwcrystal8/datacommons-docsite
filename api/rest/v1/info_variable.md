@@ -10,7 +10,7 @@ permalink: /api/rest/v1/info/variable
  
  
  
-## /v1/info/variable
+# /v1/info/variable
  
 Get basic information about a [variable](/api/rest/v1/getting_started#variable).
  
