@@ -7,7 +7,7 @@ grand_parent: API
 published: false
 permalink: /api/rest/v1/triples
 ---
-
+{% include simple_bulk_toggle.html %}
 # /v1/triples
 
 Get a [triple](/glossary.html#triple).
