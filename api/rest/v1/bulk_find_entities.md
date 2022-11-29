@@ -24,6 +24,11 @@ Given the description of an entity, this endpoint searches for an entry in the D
    This endpoint relies on name-based geocoding and is prone to inaccuracies. One common pattern is ambiguous place names that exist in different countries, states, etc. For example, there is at least one popular city called "Cambridge" in both the UK and USA. Thus, for more precise results, please provide as much context in the description as possible. For example, to resolve Cambridge in USA, pass "Cambridge, MA, USA" if you can.
 </div>
 
+<div markdown="span" class="alert alert-warning" role="alert">
+    <span class="material-icons md-16">info </span><b>See Also:</b><br />
+    For querying a single entity and a simpler output, see the [simple version](/api/rest/v1/find/entities) of this endpoint.
+</div>
+
 ## Request
 
 POST Request

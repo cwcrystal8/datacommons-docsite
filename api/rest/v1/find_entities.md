@@ -24,6 +24,11 @@ Given the description of an entity, this endpoint searches for an entry in the D
    This endpoint relies on name-based geocoding and is prone to inaccuracies. One common pattern is ambiguous place names that exist in different countries, states, etc. For example, there is at least one popular city called "Cambridge" in both the UK and USA. Thus, for more precise results, please provide as much context in the description as possible. For example, to resolve Cambridge in USA, pass "Cambridge, MA, USA" if you can.
 </div>
 
+<div markdown="span" class="alert alert-warning" role="alert">
+    <span class="material-icons md-16">info </span><b>See Also:</b><br />
+    For querying multiple entities, see the [bulk version](/api/rest/v1/bulk/find/entities) of this endpoint.
+</div>
+
 ## Request
 
 GET Request
@@ -77,7 +82,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/info/place?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&description=Georgia'
+'https://api.datacommons.org/v1/find/entities?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&description=Georgia'
 ```
 {: .example-box-content .scroll}
 
@@ -85,19 +90,7 @@ Response:
 {: .example-box-title}
 
 ```json
-{
-  "entities":[
-    {
-      "description":"Georgia",
-      "dcids":["geoId/13"]
-    },
-    {
-      "description":"Georgia",
-      "type":"Country",
-      "dcids":["country/GEO"]
-    }
-  ]
-}
+{"dcids":["geoId/13"]}
 
 ```
 {: .example-box-content .scroll}
@@ -111,7 +104,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/info/place?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&type=Country&description=Georgia'
+'https://api.datacommons.org/v1/find/entities?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&type=Country&description=Georgia'
 ```
 {: .example-box-content .scroll}
 
@@ -119,8 +112,6 @@ Response:
 {: .example-box-title}
 
 ```json
-{
-  "entities":["country/GEO"]
-}
+{"dcids":["country/GEO"]}
 ```
 {: .example-box-content .scroll}
