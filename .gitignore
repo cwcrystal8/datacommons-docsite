@@ -9,3 +9,6 @@ vendor/
 .bundle/
 .vscode/
 .jekyll-cache
+
+### Case-sensitivity weirdness
+*biomedical.html
